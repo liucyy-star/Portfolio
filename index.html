@@ -1,75 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christina Liu | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan Blake — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F1;
+    --surface:#FFFFFF;
+    --ink:#171522;
+    --muted:#6B6879;
+    --line:rgba(23,21,34,0.12);
+    --accent-1:#FF5A4E; /* Radix - coral */
+    --accent-2:#3D5AFE; /* Bloom - electric blue */
+    --accent-3:#00B87A; /* Ballot Buddy - green */
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+
+  /* cursor blob */
+  #blob{
+    position:fixed;
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--accent-1);
+    pointer-events:none;
+    z-index:9999;
+    mix-blend-mode:multiply;
+    transform:translate(-50%,-50%);
+    transition:background 0.3s ease, width 0.25s ease, height 0.25s ease;
+    display:none;
+  }
+  @media (hover:hover) and (pointer:fine){ #blob{display:block;} }
+
+  /* nav */
+  nav{
+    position:sticky; top:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw;
+    background:rgba(251,248,241,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{font-weight:700; font-size:1.05rem;}
+  .logo span{color:var(--accent-1);}
+  .nav-links{display:flex; gap:28px; font-size:0.9rem;}
+  .nav-links a{text-decoration:none; position:relative;}
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-4px;
+    width:0; height:2px; background:var(--ink);
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  /* hero */
+  .hero{
+    padding:9vh 6vw 8vh;
+    max-width:1000px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; color:var(--muted);
+    margin-bottom:22px;
+  }
+  .dot-live{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent-3);
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(1.3);}
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 4.4rem);
+    line-height:1.08;
+    font-weight:600;
+    margin:0 0 28px;
+  }
+  .rotator{
+    display:inline-block;
+    position:relative;
+    color:var(--accent-1);
+    min-width:1ch;
+  }
+  .hero p{
+    font-size:1.15rem;
+    color:var(--muted);
+    max-width:560px;
+    line-height:1.6;
+  }
+  .hero-cta{
+    margin-top:34px;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    padding:13px 26px;
+    border-radius:999px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:var(--bg);
+    text-decoration:none;
+    font-size:0.95rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    display:inline-block;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:4px 4px 0 var(--accent-1); }
+  .btn.ghost{ background:transparent; color:var(--ink); }
+  .btn.ghost:hover{ box-shadow:4px 4px 0 var(--ink); }
+
+  /* section label */
+  .section-head{
+    padding:0 6vw; margin:4vh 0 5vh;
+    display:flex; align-items:baseline; gap:16px;
+  }
+  .section-head h2{ font-size:1.6rem; font-weight:600; margin:0; }
+  .section-head .count{ color:var(--muted); font-size:0.85rem; }
+  .section-head .rule{ flex:1; height:1px; background:var(--line); }
+
+  /* case study cards */
+  .work{ padding:0 6vw 10vh; display:flex; flex-direction:column; gap:34px; max-width:900px; margin:0 auto;}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:30px 32px;
+    cursor:pointer;
+    transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.3s ease;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .card:nth-child(1){ transform:rotate(-1.1deg); }
+  .card:nth-child(2){ transform:rotate(0.8deg); }
+  .card:nth-child(3){ transform:rotate(-0.6deg); }
+  .card:hover, .card.open{
+    transform:rotate(0deg) translateY(-4px);
+    box-shadow:0 18px 34px -18px rgba(23,21,34,0.35);
+  }
+  .card[data-accent="1"]{ --card-accent:var(--accent-1); }
+  .card[data-accent="2"]{ --card-accent:var(--accent-2); }
+  .card[data-accent="3"]{ --card-accent:var(--accent-3); }
+  .card:hover, .card.open{ border-color:var(--card-accent); }
+
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+  .card-tag{
+    font-size:0.72rem; text-transform:uppercase;
+    padding:5px 11px; border-radius:999px;
+    background:color-mix(in srgb, var(--card-accent) 14%, white);
+    color:var(--card-accent);
+    font-weight:600;
+  }
+  .card h3{
+    font-size:1.6rem; margin:14px 0 6px; font-weight:600;
+  }
+  .card .one-liner{ color:var(--muted); font-size:1rem; margin:0; max-width:520px; }
+  .card-meta{
+    display:flex; gap:18px; margin-top:18px; flex-wrap:wrap;
+    font-size:0.78rem; color:var(--muted);
+  }
+  .card-meta span{ display:flex; align-items:center; gap:6px; }
+  .card-meta b{ color:var(--ink); font-weight:600; }
+
+  .toggle-hint{
+    font-size:0.78rem; color:var(--card-accent); font-weight:600;
+    display:flex; align-items:center; gap:6px; white-space:nowrap;
+  }
+  .toggle-hint svg{ transition:transform 0.3s ease; }
+  .card.open .toggle-hint svg{ transform:rotate(45deg); }
+
+  .card-detail{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.open .card-detail{ grid-template-rows:1fr; }
+  .card-detail-inner{ overflow:hidden; }
+  .detail-grid{
+    margin-top:26px; padding-top:24px; border-top:1px dashed var(--line);
+    display:grid; grid-template-columns:1fr 1fr; gap:22px 28px;
+  }
+  @media (max-width:640px){ .detail-grid{ grid-template-columns:1fr; } }
+  .detail-block .label{
+    font-size:0.7rem; text-transform:uppercase; font-weight:600;
+    color:var(--card-accent); margin-bottom:6px; letter-spacing:0.06em;
+  }
+  .detail-block p{ margin:0; font-size:0.92rem; line-height:1.55; color:var(--ink); }
+  .impact-badge{
+    grid-column:1 / -1;
+    display:flex; align-items:center; gap:14px;
+    background:color-mix(in srgb, var(--card-accent) 8%, white);
+    border-radius:12px; padding:14px 18px; margin-top:4px;
+  }
+  .impact-badge .big{
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    font-size:1.4rem; color:var(--card-accent); white-space:nowrap;
+  }
+  .impact-badge p{ margin:0; font-size:0.85rem; color:var(--muted); }
+
+  /* footer */
+  footer{
+    padding:8vh 6vw 6vh;
+    border-top:1px solid var(--line);
+    display:flex; flex-direction:column; gap:20px;
+  }
+  footer h2{ font-size:clamp(1.8rem,4vw,3rem); margin:0; font-weight:600; }
+  .footer-links{ display:flex; gap:24px; flex-wrap:wrap; font-size:0.92rem; }
+  .footer-links a{ text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color 0.2s ease, color 0.2s ease;}
+  .footer-links a:hover{ border-color:var(--ink); color:var(--accent-1); }
+  .footer-bottom{ display:flex; justify-content:space-between; color:var(--muted); font-size:0.78rem; margin-top:20px; flex-wrap:wrap; gap:10px;}
+
+  ::selection{ background:var(--accent-1); color:#fff; }
+</style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <h1>Christina Liu</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<div id="blob"></div>
 
-    <section class="hero">
-        <h2>Hello, I'm Your Name</h2>
-        <p>UX Designer • Front-End Developer • Problem Solver</p>
-        <a href="#projects" class="btn">View My Work</a>
-        <img src="images/cat.png" alt="Photo of my spirit animal">
-    </section>
+<nav>
+  <div class="logo">Jordan Blake<span>.</span></div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <section id="about" class="section">
-        <h2>About Me</h2>
-        <p>
-            I'm a designer passionate about creating intuitive, user-centered
-            digital experiences. I enjoy combining creativity with technology
-            to solve real-world problems. I also have a pet roomba
-        </p>
-    </section>
+<section class="hero">
+  <div class="eyebrow"><span class="dot-live"></span><span class="mono">available for new projects</span></div>
+  <h1>Hi, I'm Jordan.<br>I design <span class="rotator" id="rotator">clarity</span>.</h1>
+  <p>Product designer who turns confusing flows into ones people finish without swearing at their phone. Three projects below — fintech, wellness, and civic tech — each with the messy middle included.</p>
+  <div class="hero-cta">
+    <a class="btn" href="#work">See the work ↓</a>
+    <a class="btn ghost" href="#contact">Say hello</a>
+  </div>
+</section>
 
-    <section id="projects" class="section">
-        <h2>Projects</h2>
+<div class="section-head" id="work">
+  <h2>Selected work</h2>
+  <span class="count mono">03</span>
+  <div class="rule"></div>
+</div>
 
-        <div class="projects-grid">
+<div class="work">
 
-            <div class="card">
-                <h3>Project One</h3>
-                <p>Short description of the project.</p>
-                <a href="#">View Project →</a>
-            </div>
+  <article class="card" data-accent="1">
+    <div class="card-top">
+      <div>
+        <span class="card-tag">Fintech</span>
+        <h3>Radix — onboarding redesign</h3>
+        <p class="one-liner">Cut a 14-screen sign-up down to six and stopped new users from bailing before their first login.</p>
+      </div>
+      <div class="toggle-hint">Read case study
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span>Role <b>Lead Product Designer</b></span>
+      <span>Timeline <b>10 weeks</b></span>
+      <span>Tools <b>Figma, Maze, Dovetail</b></span>
+    </div>
+    <div class="card-detail"><div class="card-detail-inner"><div class="detail-grid">
+      <div class="detail-block"><div class="label">The problem</div><p>New users were dropping off before finishing sign-up. The flow spanned 14 screens with an average completion time of 11 minutes.</p></div>
+      <div class="detail-block"><div class="label">The process</div><p>Mapped the full funnel and ran 12 usability sessions. Found redundant identity checks and progress cues that gave users no sense of how close they were to done.</p></div>
+      <div class="detail-block"><div class="label">The solution</div><p>Consolidated 14 screens into six, added a progress ring, and moved document verification to run in the background instead of blocking the flow.</p></div>
+      <div class="detail-block"><div class="label">Constraints</div><p>Compliance required every identity field to stay, so the win came from sequencing and pacing, not cutting requirements.</p></div>
+      <div class="impact-badge"><div class="big">4 min</div><p>average completion time, down from 11 — and sign-up completion rate up 38% quarter over quarter.</p></div>
+    </div></div></div>
+  </article>
 
-            <div class="card">
-                <h3>Project Two</h3>
-                <p>Short description of the project.</p>
-                <a href="#">View Project →</a>
-            </div>
+  <article class="card" data-accent="2">
+    <div class="card-top">
+      <div>
+        <span class="card-tag">Wellness</span>
+        <h3>Bloom — daily check-in redesign</h3>
+        <p class="one-liner">Replaced a clinical mood scale with something people actually wanted to open every day.</p>
+      </div>
+      <div class="toggle-hint">Read case study
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span>Role <b>Product Designer</b></span>
+      <span>Timeline <b>6 weeks</b></span>
+      <span>Tools <b>Figma, Lookback</b></span>
+    </div>
+    <div class="card-detail"><div class="card-detail-inner"><div class="detail-grid">
+      <div class="detail-block"><div class="label">The problem</div><p>Seven-day retention on the daily check-in sat at 9%. Interviews found the mood scale felt like a form, not a moment for the user.</p></div>
+      <div class="detail-block"><div class="label">The process</div><p>Shadowed two therapists and tested tone and rhythm of prompts with 20 participants over three weeks, rewriting copy after every round.</p></div>
+      <div class="detail-block"><div class="label">The solution</div><p>Swapped the 1–5 scale for a tactile "weather" metaphor — sunny, cloudy, stormy — paired with warmer, more varied prompt language.</p></div>
+      <div class="detail-block"><div class="label">Constraints</div><p>Clinical advisors needed the data to stay analyzable, so each weather state still mapped to a standard mood score behind the scenes.</p></div>
+      <div class="impact-badge"><div class="big">41%</div><p>seven-day retention, up from 9% — and average session length nearly doubled.</p></div>
+    </div></div></div>
+  </article>
 
-            <div class="card">
-                <h3>Project Three</h3>
-                <p>Short description of the project.</p>
-                <a href="#">View Project →</a>
-            </div>
+  <article class="card" data-accent="3">
+    <div class="card-top">
+      <div>
+        <span class="card-tag">Civic tech</span>
+        <h3>Ballot Buddy — first-time voter mode</h3>
+        <p class="one-liner">Helped first-time voters finish their whole ballot instead of giving up at the local races.</p>
+      </div>
+      <div class="toggle-hint">Read case study
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span>Role <b>Design Researcher</b></span>
+      <span>Timeline <b>8 weeks</b></span>
+      <span>Tools <b>Figma, Airtable</b></span>
+    </div>
+    <div class="card-detail"><div class="card-detail-inner"><div class="detail-grid">
+      <div class="detail-block"><div class="label">The problem</div><p>First-time voters abandoned the site once they reached local and down-ballot races they didn't recognize.</p></div>
+      <div class="detail-block"><div class="label">The process</div><p>Interviewed 15 first-time voters and partnered with two local newsrooms to source plain-language, nonpartisan candidate summaries.</p></div>
+      <div class="detail-block"><div class="label">The solution</div><p>Built a "know enough to vote" mode: short summaries per race, a save-and-return ballot, and a printable cheat sheet for the polling booth.</p></div>
+      <div class="detail-block"><div class="label">Constraints</div><p>Every summary had to clear a nonpartisan review before shipping, which shaped how fast content could go live before election day.</p></div>
+      <div class="impact-badge"><div class="big">72%</div><p>of test users completed their full ballot, up from 31% on the county's default site.</p></div>
+    </div></div></div>
+  </article>
 
-        </div>
-    </section>
+</div>
 
-    <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
-        <p>LinkedIn | GitHub</p>
-    </section>
+<footer id="contact">
+  <h2>Got a messy flow?<br>Let's fix it.</h2>
+  <div class="footer-links">
+    <a href="mailto:hello@jordanblake.design">hello@jordanblake.design</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Resume ↓</a>
+  </div>
+  <div class="footer-bottom">
+    <span>Jordan Blake — Product Designer</span>
+    <span class="mono">Based in Sacramento, CA</span>
+  </div>
+</footer>
 
-    <footer>
-        <p>© 2026 Your Name</p>
-    </footer>
+<script>
+  // rotating word in hero
+  const words = ['clarity','simplicity','trust','flows that work','calm interfaces'];
+  const rotatorEl = document.getElementById('rotator');
+  let wi = 0;
+  setInterval(() => {
+    wi = (wi + 1) % words.length;
+    rotatorEl.style.opacity = 0;
+    setTimeout(() => {
+      rotatorEl.textContent = words[wi];
+      rotatorEl.style.opacity = 1;
+    }, 220);
+  }, 2400);
+  rotatorEl.style.transition = 'opacity 0.22s ease';
+
+  // cursor blob that adopts the accent color of whatever card it's over
+  const blob = document.getElementById('blob');
+  const accentMap = { 1: '#FF5A4E', 2: '#3D5AFE', 3: '#00B87A' };
+  window.addEventListener('mousemove', (e) => {
+    blob.style.left = e.clientX + 'px';
+    blob.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('.card').forEach(card => {
+    const accent = accentMap[card.dataset.accent];
+    card.addEventListener('mouseenter', () => {
+      blob.style.background = accent;
+      blob.style.width = '36px';
+      blob.style.height = '36px';
+    });
+    card.addEventListener('mouseleave', () => {
+      blob.style.background = '#FF5A4E';
+      blob.style.width = '22px';
+      blob.style.height = '22px';
+    });
+    card.addEventListener('click', () => {
+      const wasOpen = card.classList.contains('open');
+      document.querySelectorAll('.card.open').forEach(c => c.classList.remove('open'));
+      if (!wasOpen) card.classList.add('open');
+    });
+  });
+</script>
 
 </body>
 </html>
