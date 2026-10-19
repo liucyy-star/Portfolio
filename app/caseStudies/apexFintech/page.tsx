@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import styles from "./page.module.css";
+import styles from "../../globals.css";
 import { spaceGrotesk, plexSans, plexMono } from "./fonts";
 import {
   meta,
