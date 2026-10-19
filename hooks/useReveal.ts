@@ -16,7 +16,10 @@ export function useReveal<T extends HTMLElement>() {
   const [introDone, setIntroDone] = useState(introState.done);
 
   useEffect(() => {
-    if (introState.done) setIntroDone(true);
+    // Pages without an <IntroLoader /> (e.g. /about) have no intro to wait for.
+    if (introState.done || !document.getElementById("intro-loader")) {
+      setIntroDone(true);
+    }
     const handler = () => setIntroDone(true);
     window.addEventListener("introdone", handler);
     return () => window.removeEventListener("introdone", handler);
