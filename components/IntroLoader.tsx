@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { markIntroDone } from "@/lib/intro-state";
-import { first_name, last_name, email } from "../app/globals/constants" ;
+import { first_name, last_name, email } from "@/lib/site" ;
+import { markIntroDone, introState } from "@/lib/intro-state";
 
 const WORDS = ["Hi there.",  "I'm " + first_name + " " + last_name + ".", "Let's look at some work."];
 const WORD_INTERVAL = 700;
@@ -11,9 +11,10 @@ export default function IntroLoader() {
   const [wordIndex, setWordIndex] = useState(0);
   const [showSkip, setShowSkip] = useState(false);
   const [exiting, setExiting] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(introState.done);
 
   useEffect(() => {
+    if (introState.done) return;
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;

@@ -7,6 +7,7 @@
   --accent-1: #ff5a4e; /* Radix - coral */
   --accent-2: #3d5afe; /* Bloom - electric blue */
   --accent-3: #00b87a; /* Ballot Buddy - green */
+  --nav-h: 68px; /* height of the sticky top nav */
 }
 
 * {
@@ -58,11 +59,12 @@ a {
   }
 }
 
-/* nav */
-nav {
+/* global nav */
+.site-nav {
   position: sticky;
   top: 0;
   z-index: 100;
+  height: var(--nav-h);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,6 +76,7 @@ nav {
 .logo {
   font-weight: 700;
   font-size: 1.05rem;
+  text-decoration: none;
 }
 .logo span {
   color: var(--accent-1);
@@ -290,6 +293,12 @@ nav {
 .card-meta b {
   color: var(--ink);
   font-weight: 600;
+}
+
+.card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .toggle-hint {
