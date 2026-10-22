@@ -103,6 +103,122 @@ a {
 .nav-links a:hover::after {
   width: 100%;
 }
+.nav-links a {
+  white-space: nowrap;
+}
+
+/* hamburger menu: hidden until the links run out of room (see breakpoint) */
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.menu-toggle span {
+  position: absolute;
+  left: 11px;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+}
+.menu-toggle span:nth-child(1) {
+  top: 15px;
+}
+.menu-toggle span:nth-child(2) {
+  top: 21px;
+}
+.menu-toggle span:nth-child(3) {
+  top: 27px;
+}
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  z-index: 99;
+  display: none;
+  background: var(--bg);
+  padding: 5vh 6vw;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease;
+}
+.menu-overlay ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-overlay li {
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.menu-overlay.open li {
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu-overlay a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.menu-overlay a:hover {
+  color: var(--accent-1);
+}
+.menu-overlay a .mono {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Phones and tablets: the links stop fitting beside the logo, so swap them
+   for the hamburger. */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+  .menu-toggle,
+  .menu-overlay {
+    display: block;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay,
+  .menu-overlay li,
+  .menu-toggle span {
+    transition: none;
+  }
+}
 
 /* hero */
 .hero {
