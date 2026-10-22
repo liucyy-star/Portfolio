@@ -1,14 +1,14 @@
 import CaseStudyTemplate from "@/components/CaseStudyTemplate";
-import { benefitsCal } from "@/lib/caseStudies/benefitsCal";
+import { aggieMentalHealth } from "@/lib/caseStudies/aggieMentalHealth";
 import styles from "./page.module.css";
 import { dmSans, plexSans, plexMono } from "./fonts";
 
-export const metadata = { title: benefitsCal.title, description: benefitsCal.oneLiner };
+export const metadata = { title: aggieMentalHealth.title, description: aggieMentalHealth.oneLiner };
 
 export default function Page() {
   return (
     <CaseStudyTemplate
-      study={benefitsCal}
+      study={aggieMentalHealth}
       styles={styles}
       fontClass={`${dmSans.variable} ${plexSans.variable} ${plexMono.variable}`}
     />

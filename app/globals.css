@@ -471,8 +471,62 @@ footer h2 {
   opacity: 1;
 }
 
+/* creative galleries */
+.gallery-page { max-width: 1200px; margin: 0 auto; padding: 8vh 6vw; }
+.gallery-head { max-width: 640px; margin-bottom: 48px; }
+.gallery-kicker { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); }
+.gallery-head h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 12px 0; }
+.gallery-head p { color: var(--muted); line-height: 1.7; margin: 0; }
+
+/* masonry: images stack in columns, like Pinterest */
+.gallery-grid { columns: 3 280px; column-gap: 20px; }
+.gallery-item { break-inside: avoid; margin: 0 0 20px; }
+.gallery-item img { display: block; border-radius: 12px; }
+.gallery-item figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+
+
 @media (prefers-reduced-motion: reduce) {
   #intro-loader {
     display: none;
+  }
+}
+
+/* under construction */
+.construction {
+  min-height: 62vh;
+}
+.dot-wip {
+  background: var(--accent-1);
+}
+.fade-up {
+  animation: introFade 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.caution-tape {
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 12px 0;
+  font-size: 0.8rem;
+  transform: rotate(-1.1deg);
+  margin: 4vh -2vw 10vh;
+  border-top: 4px solid var(--accent-1);
+  border-bottom: 4px solid var(--accent-1);
+}
+.caution-tape span {
+  display: inline-block;
+  animation: tapeScroll 40s linear infinite;
+}
+@keyframes tapeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .caution-tape span {
+    animation: none;
   }
 }

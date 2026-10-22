@@ -1,7 +1,7 @@
 import type { CaseStudy } from "./types";
 
 export const apexFintech: CaseStudy = {
-  slug: "apexFintech",
+  slug: "apexFintechStory",
   accent: "1",
   tag: "Fintech",
   title: "Apex Fintech — Sandbox MVP",

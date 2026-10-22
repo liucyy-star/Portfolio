@@ -18,7 +18,7 @@ export default function CaseStudyCard({
   const tilt = TILTS[index % TILTS.length];
 
   return (
-    <Link href={`/caseStudies/${study.slug}`} className="card-link">
+    <Link href={`/work/${study.slug}`} className="card-link">
       <article
         ref={ref}
         className="card"

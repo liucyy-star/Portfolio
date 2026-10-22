@@ -46,6 +46,16 @@ export default function CaseStudyTemplate({
     );
   }
 
+    // A bulleted list; shows nothing if there are no bullets.
+  function Bullets({ items }: { items?: string[] }) {
+    if (!items?.length) return null;
+    return (
+      <ul className={styles.list}>
+        {items.map((b) => <li key={b}>{b}</li>)}
+      </ul>
+    );
+  }
+
   const meta = [
     { label: "Role", value: study.role },
     { label: "Timeline", value: study.timeline },
@@ -112,12 +122,14 @@ const toc = [
           {study.overview.map((p, i) => (
             <p key={i} className={`${styles.prose} ${i === 0 ? styles.lead : ""}`}>{p}</p>
           ))}
+          <Bullets items={study.overviewBullets} />
           {study.media?.overview}
         </Section>
 
         <Section id="problem" kicker="The problem" title={study.problem.title}>
           <p className={styles.prose}>{study.problem.body}</p>
           <div className={styles.callout}>{study.problem.hmw}</div>
+          <Bullets items={study.problem.bullets} />
           {study.media?.problem}
         </Section>
 
@@ -211,7 +223,7 @@ const toc = [
       <section className={styles.next}>
         <div className={styles.wrap}>
           <div className={styles.kicker}>Want to read more?</div>
-          <Link href={`/caseStudies/${next.slug}`} className={styles.nextCard}>
+          <Link href={`/work/${next.slug}`} className={styles.nextCard}>
             <span className={styles.nextTag}>{next.tag}</span>
             <h2 className={styles.h2}>{next.title}</h2>
             <p className={styles.prose}>{next.oneLiner}</p>

@@ -22,7 +22,7 @@ export type Shot = { src: string; alt: string; caption?: string };
 // A "?" means the section is optional and is hidden if left out.
 export interface CaseStudy {
   // homepage card
-  slug: string; // becomes the URL: /caseStudies/<slug>
+  slug: string; // becomes the URL: /work/<slug>
   accent: Accent;
   tag: string;
   title: string;
@@ -36,8 +36,9 @@ export interface CaseStudy {
   heroTitle: string;
   heroSub: string;
   overview: string[]; // one string per paragraph
-  problem: { title: string; body: string; hmw: string };
-  solution: { title: string; body: string };
+  overviewBullets?: string[];
+  problem: { title: string; body: string; hmw: string; bullets?: string[] };
+  solution: { title: string; body: string; bullets?: string[]};
   research?: { title: string; body: string; personas: Persona[], images?: Shot[] };
   metrics?: string[];
   flow?: { title: string; body: string; steps: Step[] };

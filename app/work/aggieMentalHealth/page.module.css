@@ -24,11 +24,12 @@
 .meta { display: flex; flex-wrap: wrap; gap: 32px; margin: 40px 0 0; }
 .metaTerm { font-family: var(--font-mono), monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lav); }
 .metaValue { margin: 4px 0 0; font-weight: 600; color: var(--navy); }
+.list { margin: 0 0 16px; padding-left: 20px; line-height: 1.7; max-width: 680px; }
 
 /* sidebar layout */
 .layout { display: grid; grid-template-columns: 180px 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 0 4vw; }
 .layout .wrap { padding: 0; } /* the layout already adds side padding */
-.sidebar { position: sticky; top: 100px; align-self: start; padding-top: 9vh; }
+.sidebar { position: sticky; top: calc(var(--nav-h) + 32px); align-self: start; padding-top: 9vh; margin-bottom: 80px; }
 .tocList { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; border-left: 2px solid var(--pale); }
 .tocLink { display: block; padding-left: 14px; margin-left: -2px; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: 0.9rem; }
 .tocLink:hover { color: var(--navy); border-left-color: var(--navy); }

@@ -10,6 +10,8 @@ export default function Nav() {
       <div className="nav-links">
         <Link href="/#work">Work</Link>
         <Link href="/about">About</Link>
+        <Link href="/graphic-design">Graphic Design</Link>
+        <Link href="/photography">Photography</Link>
         <Link href="/#contact">Contact</Link>
       </div>
     </nav>
