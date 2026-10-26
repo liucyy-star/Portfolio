@@ -1,15 +1,15 @@
 import type { CaseStudy } from "./types";
 
 export const aggieMentalHealth: CaseStudy = {
-  slug: "aggieMentalHealth", // must match the folder name in app/work
+  slug: "aggieMentalHealthStory", // must match the folder name in app/work
   accent: "3",         // card color: "1", "2" or "3"
   tag: "Brand Campaign",
   title: "Aggie Mental Health",
-  oneLiner: "Built the visual identity for UC Davis's student mental health campaign, starting from nothing but the copy.",
+  oneLiner: "Built the visual identity for UC Davis's rebranded student mental health campaign, starting from nothing but the copy.",
   role: "Student Graphic Designer",
-  timeline: "Summer of 2022",
-  tools: "Figma",
-  team: "University of California, Davis",
+  timeline: "Jun – Nov 2022",
+  tools: "Adobe Illustrator, Adobe Fresco",
+  team: "UC Davis SAMC creative team",
 
   heroTitle: "Aggie Mental Health",
   heroSub: "Promoting student's mental well-being, one poster at a time",
@@ -23,8 +23,8 @@ export const aggieMentalHealth: CaseStudy = {
     "Focus on a holistic mental well-being rather than a targeted symptom",
      ],
   problem: {
-    title: "A message with no look",
-    body: "I was approached by my manager early June, as the Spring Quarter had just ended, ushering in summer vacation and its heat. The client already knew what the campaign should say, but it had no visual identity: no logo, no iconography, no marketing materials, not even merch like sweatshirts or pens. Everything had to be built from scratch while staying inside the broader UC Davis brand.",
+    title: "A new name with no look",
+    body: "I was approached by my manager early June, as the Spring Quarter had just ended, ushering in summer vacation and its heat. UC Davis's student mental health initiative, Each Aggie Matters, was being renamed Aggie Mental Health: student feedback showed the old name didn't say it was about mental health. The client knew what the campaign should say, but it had no visual identity: no logo, no iconography, no marketing materials, not even merch like sweatshirts or pens. Everything had to be built from scratch while staying inside the broader UC Davis brand.",
     hmw: "How might we engage the student population to participant in their mental well-being?",
     bullets: [
       "Stay within UC Davis's existing color palette and visual identity",
@@ -43,7 +43,7 @@ export const aggieMentalHealth: CaseStudy = {
       { title: "Copy", description: "Helped shape the campaign wording and assembled the list of messages the visuals needed to carry." },
       { title: "Imagery", description: "Chose photos from SAMC's existing marketing library to pair with each message." },
       { title: "Color", description: "Picked a palette from within the UC Davis brand that would stay visible and readable across every piece of marketing material." },
-      { title: "Visual assets", description: "Designed the logo plus a library of supporting graphics, like Headspace's mascots or Google's shapes, so every poster, handout, and piece of merch felt like part of one campaign." },
+      { title: "Visual assets", description: "Designed the logo plus a library of hand-drawn elements (flowers, leaves, halos, hands, squiggles), drawn in Adobe Fresco and vectorized in Illustrator, so every poster, handout, and piece of merch felt like part of one campaign." },
     ],
   },
   finalDesign: {

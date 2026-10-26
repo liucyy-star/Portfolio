@@ -22,3 +22,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# original design files (read-only source, not published)
+/_source/

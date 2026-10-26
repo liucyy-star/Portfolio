@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import Lenis from "lenis";
+import { navOffset, useReducedMotion, useSmoothScroll } from "@/hooks/useStoryMotion";
 import styles from "./story.module.css";
 import { apexFintech as study } from "@/lib/caseStudies/apexFintech";
 import {
@@ -39,65 +39,6 @@ const [overviewLead, ...overviewRest] = study.overview;
 const personas = study.research?.personas ?? [];
 const flowSteps = study.flow?.steps ?? [];
 
-/** Height of the sticky site nav, so pinned panels sit just below it. */
-const navOffset = () =>
-  document.querySelector<HTMLElement>(".site-nav")?.offsetHeight ?? 0;
-
-/**
- * The viewer's motion preference. Starts from the OS-level
- * prefers-reduced-motion setting, then remembers whatever they pick
- * with the on-page toggle. `null` until we've read it on the client.
- */
-function useReducedMotion() {
-  const [reduced, setReduced] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem(MOTION_KEY);
-    } catch {}
-    setReduced(
-      stored !== null
-        ? stored === "1"
-        : window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    );
-  }, []);
-
-  const update = (next: boolean) => {
-    setReduced(next);
-    try {
-      localStorage.setItem(MOTION_KEY, next ? "1" : "0");
-    } catch {}
-  };
-
-  return [reduced, update] as const;
-}
-
-/** Lenis smooth scrolling, driven by GSAP's ticker so ScrollTrigger stays in sync. */
-function useSmoothScroll(enabled: boolean) {
-  useEffect(() => {
-    if (!enabled) return;
-
-    // globals.css sets scroll-behavior: smooth, which fights Lenis.
-    const html = document.documentElement;
-    const prevBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    const tick = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      gsap.ticker.remove(tick);
-      gsap.ticker.lagSmoothing(500, 33);
-      lenis.destroy();
-      html.style.scrollBehavior = prevBehavior;
-    };
-  }, [enabled]);
-}
-
 function cellTone(value: string) {
   if (value.startsWith("Yes")) return styles.yes;
   if (value === "Partial") return styles.partial;
@@ -106,7 +47,7 @@ function cellTone(value: string) {
 
 export default function ApexStory() {
   const root = useRef<HTMLDivElement>(null);
-  const [reduced, setReduced] = useReducedMotion();
+  const [reduced, setReduced] = useReducedMotion(MOTION_KEY);
   const motion = reduced === false;
 
   useSmoothScroll(motion);
