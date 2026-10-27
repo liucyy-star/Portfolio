@@ -103,11 +103,27 @@ a {
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: var(--ink);
+  background: currentColor;
   transition: width 0.25s ease;
 }
 .nav-links a:hover::after {
   width: 100%;
+}
+/* each link gets its own wordmark color on hover (underline follows) */
+.nav-links a {
+  transition: color 0.2s ease;
+}
+.nav-links a:nth-child(3n + 1):hover,
+.menu-overlay li:nth-child(3n + 1) a:hover {
+  color: var(--accent-1);
+}
+.nav-links a:nth-child(3n + 2):hover,
+.menu-overlay li:nth-child(3n + 2) a:hover {
+  color: var(--accent-2);
+}
+.nav-links a:nth-child(3n):hover,
+.menu-overlay li:nth-child(3n) a:hover {
+  color: var(--accent-3);
 }
 .nav-links a {
   white-space: nowrap;
