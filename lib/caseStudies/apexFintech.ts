@@ -4,6 +4,7 @@ export const apexFintech: CaseStudy = {
   slug: "apexFintechStory",
   accent: "1",
   bouquet: ["card", "chart", "coin", "code", "api", "lock"],
+  thumbnail: { src: "/case-studies/apex/dashboard-mid2.png", alt: "Apex sandbox dashboard with Quick Start, Developer Portal and Credentials cards", position: "top left" },
   tag: "Fintech",
   title: "Apex Fintech — Sandbox MVP",
   oneLiner:

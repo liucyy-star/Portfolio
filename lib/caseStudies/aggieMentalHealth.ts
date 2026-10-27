@@ -12,6 +12,7 @@ export const aggieMentalHealth: CaseStudy = {
     { src: "/case-studies/aggie/element-flowers.png", x: 530, y: 390, size: 190, w: 900, h: 1165 },
     { src: "/case-studies/aggie/element-leaves.png", x: 655, y: 940, size: 230, w: 900, h: 1165 },
   ],
+  thumbnail: { src: "/case-studies/aggie/lcd-be-kind.jpg", alt: "Campus screen: “be kind to yourself” over a student in a hammock", position: "top" },
   tag: "Brand Campaign",
   title: "Aggie Mental Health",
   oneLiner: "Built the visual identity for UC Davis's rebranded student mental health campaign, starting from nothing but the copy.",

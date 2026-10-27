@@ -35,6 +35,7 @@ export interface CaseStudy {
   tools: string;
   team: string;
   bouquet?: (string | BloomImage)[]; // icon names (or cropped doodles) from components/BloomIcons.tsx that bloom around the card on hover
+  thumbnail?: { src: string; alt: string; position?: string }; // card image; left out = placeholder panel. position = object-position, e.g. "top"
 
   // case study page
   heroTitle: string;

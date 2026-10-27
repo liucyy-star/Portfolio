@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "@/lib/caseStudies";
 import type { BloomImage } from "@/lib/caseStudies/types";
@@ -61,6 +62,23 @@ export default function CaseStudyCard({
           transitionDelay: `${index * 110}ms`,
         }}
       >
+        <div className="card-thumb">
+          {study.thumbnail ? (
+            <Image
+              src={study.thumbnail.src}
+              alt={study.thumbnail.alt}
+              fill
+              sizes="(min-width: 900px) 836px, 88vw"
+              style={{ objectFit: "cover", objectPosition: study.thumbnail.position ?? "center" }}
+            />
+          ) : (
+            // Placeholder until real screens are ready.
+            <div className="card-thumb-placeholder" aria-hidden="true">
+              <span className="mono">image coming soon</span>
+            </div>
+          )}
+        </div>
+
         <div className="card-top">
           <div>
             <span className="card-tag">{study.tag}</span>

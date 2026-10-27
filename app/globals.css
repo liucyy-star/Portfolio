@@ -470,6 +470,49 @@ a {
   border-color: var(--card-accent);
 }
 
+/* thumbnail: real image, or an accent-tinted placeholder panel */
+.card-thumb {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  margin: -12px -14px 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--card-accent) 10%, white);
+  border: 1px solid var(--line);
+}
+.card-thumb img {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.card-link:hover .card-thumb img {
+  transform: scale(1.03);
+}
+.card-thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 18% 30%, color-mix(in srgb, var(--card-accent) 30%, transparent), transparent 45%),
+    radial-gradient(circle at 82% 75%, color-mix(in srgb, var(--card-accent-2) 28%, transparent), transparent 45%),
+    color-mix(in srgb, var(--card-accent) 8%, white);
+}
+.card-thumb-placeholder span {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px dashed color-mix(in srgb, var(--card-accent) 50%, transparent);
+  background: rgba(255, 255, 255, 0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-thumb img { transition: none; }
+}
+@media (max-width: 640px) {
+  .card-thumb { margin: -6px -6px 20px; }
+}
+
 .card-top {
   display: flex;
   justify-content: space-between;
