@@ -10,6 +10,9 @@ const WORDS = [
   "calm interfaces",
 ];
 
+// One color per word, borrowed from the wordmark (deep enough to read on cream).
+const WORD_COLORS = ["#ff7433", "#4f95ff", "#ef6f7c", "#1890a8", "#7fbf5a", "#e27fb2"];
+
 /**
  * Cycles through a short list of words in the hero headline,
  * fading between each one.
@@ -32,7 +35,10 @@ export default function RotatingWord() {
   }, []);
 
   return (
-    <span className="rotator" style={{ opacity: visible ? 1 : 0 }}>
+    <span
+      className="rotator"
+      style={{ opacity: visible ? 1 : 0, color: WORD_COLORS[index % WORD_COLORS.length] }}
+    >
       {WORDS[index]}
     </span>
   );

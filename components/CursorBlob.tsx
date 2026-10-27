@@ -3,12 +3,12 @@
 import { useEffect, useRef } from "react";
 
 const ACCENT_COLORS: Record<string, string> = {
-  "1": "#FF5A4E",
-  "2": "#3D5AFE",
-  "3": "#00B87A",
+  "1": "#5A7BFF",
+  "2": "#0B8F94",
+  "3": "#2F7D55",
 };
 
-const DEFAULT_COLOR = ACCENT_COLORS["1"];
+const DEFAULT_COLOR = "#FF7433";
 
 /**
  * A cursor-following dot that grows and picks up the accent color

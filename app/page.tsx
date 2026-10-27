@@ -15,6 +15,15 @@ export default function Home() {
 
 
       <section className="hero">
+        {/* overlapping translucent shapes, echoing the wordmark */}
+        <div className="hero-shapes" aria-hidden="true">
+          <span className="shape s-blue" />
+          <span className="shape s-yellow" />
+          <span className="shape s-orange" />
+          <span className="shape s-pink" />
+          <span className="shape s-green" />
+          <span className="shape s-teal" />
+        </div>
         <Reveal delay={0}>
           <div className="eyebrow">
             <span className="dot-live" />
