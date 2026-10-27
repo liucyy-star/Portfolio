@@ -27,7 +27,7 @@ export default function Home() {
         <Reveal delay={0}>
           <div className="eyebrow">
             <span className="dot-live" />
-            <span className="mono">available for new projects</span>
+            <span className="mono">open to UX roles</span>
           </div>
         </Reveal>
         <Reveal delay={100}>
@@ -39,9 +39,9 @@ export default function Home() {
         </Reveal>
         <Reveal delay={200}>
           <p>
-            Product designer who turns confusing flows into ones people
+            UX designer who turns confusing flows into ones people
             finish without swearing at their phone. Three projects below —
-            fintech, wellness, and civic tech — each with the messy middle
+            civic tech, fintech, and a brand campaign — each with the messy middle
             included.
           </p>
         </Reveal>

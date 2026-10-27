@@ -1,4 +1,4 @@
-# Jordan Blake — Product Designer Portfolio
+# Christina Liu — UX Designer Portfolio
 
 A Next.js (App Router) portfolio site with three case studies.
 

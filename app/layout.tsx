@@ -26,9 +26,9 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Christina Liu — Product Designer",
+  title: "Christina Liu — UX Designer",
   description:
-    "Product designer portfolio featuring case studies in fintech, wellness, and civic tech.",
+    "UX designer portfolio featuring case studies in civic tech, fintech, and brand design.",
 };
 
 export default function RootLayout({

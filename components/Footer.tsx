@@ -24,7 +24,7 @@ export default function Footer() {
           </a>
         </div>
         <div className="footer-bottom">
-          <span>{first_name} {last_name} — Product Designer</span>
+          <span>{first_name} {last_name} — UX Designer</span>
           <span className="mono">Based in Sacramento, CA</span>
         </div>
       </footer>
