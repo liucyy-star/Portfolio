@@ -4,6 +4,9 @@ export type SectionName =
   | "overview" | "problem" | "solution" | "research" | "metrics"
   | "flow" | "process" | "finalDesign" | "reflection";
 
+// A doodle cropped out of an element sheet (pixel coords in the source image).
+export type BloomImage = { src: string; x: number; y: number; size: number; w: number; h: number };
+
 export type Accent = "1" | "2" | "3";
 
 export type Persona = {
@@ -31,6 +34,7 @@ export interface CaseStudy {
   timeline: string;
   tools: string;
   team: string;
+  bouquet?: (string | BloomImage)[]; // icon names (or cropped doodles) from components/BloomIcons.tsx that bloom around the card on hover
 
   // case study page
   heroTitle: string;

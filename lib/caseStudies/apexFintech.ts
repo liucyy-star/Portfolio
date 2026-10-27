@@ -3,6 +3,7 @@ import type { CaseStudy } from "./types";
 export const apexFintech: CaseStudy = {
   slug: "apexFintechStory",
   accent: "1",
+  bouquet: ["card", "chart", "coin", "code", "api", "lock"],
   tag: "Fintech",
   title: "Apex Fintech — Sandbox MVP",
   oneLiner:

@@ -3,6 +3,7 @@ import type { CaseStudy } from "./types";
 export const benefitsCal: CaseStudy = {
   slug: "benefitsCal", // must match the folder name in app/work
   accent: "2",         // card color: "1", "2" or "3"
+  bouquet: ["doc", "check", "building", "form", "heart", "pencil"],
   tag: "Civic tech: Eligibility",
   title: "BenefitsCal — Medi-Cal renewal under new policy",
   oneLiner: "Turned a brand-new, fast-changing federal policy into a Medi-Cal renewal flow Californians could actually get through online.",

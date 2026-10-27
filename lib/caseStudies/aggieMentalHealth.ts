@@ -3,6 +3,15 @@ import type { CaseStudy } from "./types";
 export const aggieMentalHealth: CaseStudy = {
   slug: "aggieMentalHealthStory", // must match the folder name in app/work
   accent: "3",         // card color: "1", "2" or "3"
+  bouquet: [
+    // doodles from the campaign's own element sheets (900×1165 each)
+    { src: "/case-studies/aggie/element-flowers.png", x: 675, y: 175, size: 170, w: 900, h: 1165 },
+    { src: "/case-studies/aggie/element-leaves.png", x: 525, y: 175, size: 270, w: 900, h: 1165 },
+    { src: "/case-studies/aggie/element-squiggles.png", x: 785, y: 100, size: 150, w: 900, h: 1165 },
+    { src: "/case-studies/aggie/element-halo-dots.png", x: 670, y: 150, size: 340, w: 900, h: 1165 },
+    { src: "/case-studies/aggie/element-flowers.png", x: 530, y: 390, size: 190, w: 900, h: 1165 },
+    { src: "/case-studies/aggie/element-leaves.png", x: 655, y: 940, size: 230, w: 900, h: 1165 },
+  ],
   tag: "Brand Campaign",
   title: "Aggie Mental Health",
   oneLiner: "Built the visual identity for UC Davis's rebranded student mental health campaign, starting from nothing but the copy.",
