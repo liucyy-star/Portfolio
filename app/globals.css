@@ -434,12 +434,6 @@ a {
 .card-link .card {
   position: relative;
   z-index: 1;
-  /* soft wash of the study's accent instead of plain white */
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--card-accent) 7%, white),
-    var(--surface) 60%
-  );
 }
 .card-link:hover .card {
   box-shadow: 0 22px 40px -20px color-mix(in srgb, var(--card-accent) 60%, transparent);
