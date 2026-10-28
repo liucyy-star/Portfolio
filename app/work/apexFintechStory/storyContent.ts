@@ -144,3 +144,62 @@ export const stats: Stat[] = [
   { value: "$2.4M", label: "Assets under management" },
   { value: "18.3k", label: "API calls" },
 ];
+
+// UI kit, taken from the kit board in the original deck.
+export type KitSwatch = { hex: string; ink: string };
+
+const kitInk = (hex: string, light: boolean): KitSwatch => ({
+  hex,
+  ink: light ? "#052391" : "#e6e9f4",
+});
+
+// Apex blue stepping down to black, and out to white.
+export const kitShades: KitSwatch[] = [
+  "#052391", "#052083", "#041c74", "#041966", "#031557", "#031249",
+  "#020e3a", "#010a2b", "#01071d", "#00030e", "#000000",
+].map((hex) => kitInk(hex, false));
+
+export const kitTints: KitSwatch[] = [
+  "#052391", "#1e399c", "#374fa7", "#5065b2", "#697bbd", "#8291c8",
+  "#9ba7d3", "#b4bdde", "#cdd3e9", "#e6e9f4", "#ffffff",
+].map((hex, i) => kitInk(hex, i >= 6));
+
+export type QuickStartVariant = "filled" | "outline" | "link" | "linkEnd";
+
+export const quickStartVariants: { variant: QuickStartVariant; label: string }[] = [
+  { variant: "filled", label: "Primary" },
+  { variant: "outline", label: "Secondary" },
+  { variant: "link", label: "Text link" },
+  { variant: "linkEnd", label: "Text link, trailing" },
+];
+
+export type NavIcon = "portal" | "toolkit" | "settings";
+export type NavGroup = { title: string; icon: NavIcon; links: string[] };
+
+export const navGroups: NavGroup[] = [
+  {
+    title: "Portal",
+    icon: "portal",
+    links: ["Quick Start", "Create Account", "Fund Account", "Place An Order", "View Activities"],
+  },
+  {
+    title: "Dev Toolkit",
+    icon: "toolkit",
+    links: ["Test Connection", "Try Our APIs", "Portal Tutorials", "API Docs", "Apex Online"],
+  },
+  {
+    title: "Settings",
+    icon: "settings",
+    links: ["Company Profile", "Personal Profile", "Manage Team"],
+  },
+];
+
+export const footerColumns: { title: string; links: string[] }[] = [
+  {
+    title: "Portal",
+    links: ["Quick Start", "Create Account", "Fund Account", "Make A Trade", "View Activities", "Try Our APIs"],
+  },
+  { title: "Resources", links: ["Sandbox Tutorials", "API Reference Docs", "Apex Online"] },
+  { title: "Settings", links: ["Company Profile", "Personal Profile", "Manage Team"] },
+  { title: "About Apex", links: ["Our Mission", "Our Products", "Contact Us"] },
+];

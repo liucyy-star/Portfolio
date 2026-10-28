@@ -22,6 +22,7 @@ import {
   flowIterations,
   evolution,
 } from "./storyContent";
+import UiKit from "./UiKit";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -152,6 +153,38 @@ export default function ApexStory() {
         duration: 0.7,
         ease: "power3.out",
         scrollTrigger: { trigger: one('[data-anim="steps"]'), start: "top 80%" },
+      });
+
+      // UI kit: palette fills in chip by chip, then the components land.
+      gsap.from($('[data-anim="kit-swatch"]'), {
+        scaleY: 0,
+        transformOrigin: "50% 100%",
+        stagger: 0.04,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: one('[data-anim="kit-palette"]'),
+          start: "top 85%",
+          end: "bottom 60%",
+          scrub: 0.6,
+        },
+      });
+      gsap.from($('[data-anim="kit-card"]'), {
+        y: 60,
+        rotate: (i) => (i % 2 ? 4 : -4),
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: { trigger: one('[data-anim="kit-cards"]'), start: "top 80%" },
+      });
+      $('[data-anim="kit-piece"]').forEach((el) => {
+        gsap.from(el, {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%" },
+        });
       });
 
       // Final portal assembles itself, then the stats count up.
@@ -625,7 +658,23 @@ export default function ApexStory() {
           </div>
         </section>
 
-        {/* 8. Final portal */}
+        {/* 8. UI kit */}
+        <section className={styles.section}>
+          <div className={styles.wrap}>
+            <p className={styles.kicker}>UI kit</p>
+            <h2 className={styles.h2} data-split>
+              A kit for a product with no design system
+            </h2>
+            <p className={styles.prose} data-fade>
+              {study.process.steps[1]?.description} One Apex blue carries
+              everything, stepped down to black for surfaces and out to white
+              for text.
+            </p>
+            <UiKit />
+          </div>
+        </section>
+
+        {/* 9. Final portal */}
         <section className={styles.section}>
           <div className={styles.wrap}>
             <p className={styles.kicker}>Final design</p>
@@ -676,7 +725,7 @@ export default function ApexStory() {
           </div>
         </section>
 
-        {/* 9. Reflection */}
+        {/* 10. Reflection */}
         <section className={styles.section}>
           <div className={styles.wrap}>
             <p className={styles.kicker}>Reflection</p>
