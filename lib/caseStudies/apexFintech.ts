@@ -94,6 +94,7 @@ export const apexFintech: CaseStudy = {
 
   finalDesign: {
     title: "The Portal",
+    prototypeUrl: "https://www.figma.com/proto/eCYDqfIZT8go8N5Ui1Kweb/High-Fis-V2?page-id=0%3A1&node-id=1-944&viewport=-2355%2C463%2C0.21&t=Q0XpuEWjTAcEy87Y-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A944&show-proto-sidebar=1",
     body: "The first screen a client sees after account setup and 2FA. It answers three questions immediately: what do I have access to, how do I start, and what’s happening with my account?",
     images: [
       { src: "/case-studies/apex/portal.png", alt: "Apex sandbox Portal dashboard", caption: "Final Portal design." },
