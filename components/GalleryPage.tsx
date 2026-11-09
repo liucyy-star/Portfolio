@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Gallery } from "@/lib/galleries";
+import PaperDesk from "./PaperDesk";
 
 export default function GalleryPage({ gallery }: { gallery: Gallery }) {
   return (
@@ -10,21 +10,7 @@ export default function GalleryPage({ gallery }: { gallery: Gallery }) {
         <p>{gallery.intro}</p>
       </header>
 
-      <div className="gallery-grid">
-        {gallery.items.map((item) => (
-          <figure key={item.src} className="gallery-item">
-            <Image
-              src={item.src}
-              alt={item.alt}
-              width={0}
-              height={0}
-              sizes="(max-width: 700px) 100vw, 33vw"
-              style={{ width: "100%", height: "auto" }}
-            />
-            {item.caption && <figcaption>{item.caption}</figcaption>}
-          </figure>
-        ))}
-      </div>
+      <PaperDesk items={gallery.items} label={gallery.title} />
     </main>
   );
 }
