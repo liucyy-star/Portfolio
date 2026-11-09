@@ -12,9 +12,8 @@ import { navOffset, useReducedMotion, useSmoothScroll } from "@/hooks/useStoryMo
 import styles from "./story.module.css";
 import { apexFintech as study } from "@/lib/caseStudies/apexFintech";
 import {
-  credentials,
-  stats,
   heroShot,
+  finalShots,
   idealMilestones,
   competitorColumns,
   competitors,
@@ -187,44 +186,14 @@ export default function ApexStory() {
         });
       });
 
-      // Final portal assembles itself, then the stats count up.
-      const counters = $("[data-count]");
-      const portal = gsap.timeline({
-        scrollTrigger: { trigger: one('[data-anim="portal"]'), start: "top 75%" },
-      });
-      portal
-        .from(one('[data-anim="portal"]'), {
-          y: 80,
-          scale: 0.94,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-        })
-        .from(
-          $('[data-anim="pcard"]'),
-          { y: 40, opacity: 0, stagger: 0.12, duration: 0.7, ease: "power2.out" },
-          "-=0.5"
-        );
-      counters.forEach((el, i) => {
-        const raw = el.dataset.count ?? "";
-        const match = raw.match(/^(\D*)([\d.]+)(\D*)$/);
-        if (!match) return;
-        const [, prefix, num, suffix] = match;
-        const decimals = (num.split(".")[1] ?? "").length;
-        const value = { v: 0 };
-        el.textContent = prefix + (0).toFixed(decimals) + suffix;
-        portal.to(
-          value,
-          {
-            v: parseFloat(num),
-            duration: 1.4,
-            ease: "power2.out",
-            onUpdate: () => {
-              el.textContent = prefix + value.v.toFixed(decimals) + suffix;
-            },
-          },
-          i === 0 ? "-=0.3" : "<"
-        );
+      // Final design: the light and dark screens rise in one after the other.
+      gsap.from($('[data-anim="final"]'), {
+        y: 80,
+        opacity: 0,
+        stagger: 0.18,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: one('[data-anim="finalGrid"]'), start: "top 80%" },
       });
 
       const mm = gsap.matchMedia();
@@ -335,12 +304,6 @@ export default function ApexStory() {
           });
         });
       });
-
-      return () => {
-        counters.forEach((el) => {
-          el.textContent = el.dataset.count ?? "";
-        });
-      };
     },
     { scope: root, dependencies: [motion], revertOnUpdate: true }
   );
@@ -685,43 +648,34 @@ export default function ApexStory() {
               {study.finalDesign.body}
             </p>
 
-            <div className={styles.portal} data-anim="portal">
-              <div className={styles.portalBar}>
-                <h3 className={styles.portalTitle}>Hello, Company Inc.</h3>
-                <span className={styles.portalHost}>sandbox.apexfintech.com</span>
-              </div>
-              <div className={styles.portalGrid}>
-                <div className={styles.pcard} data-anim="pcard">
-                  <div className={styles.pLabel}>Credentials</div>
-                  {credentials.map((c) => (
-                    <div key={c.label} className={styles.credRow}>
-                      <span>{c.label}</span>
-                      <span className={styles.credValue}>{c.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className={`${styles.pcard} ${styles.qsCard}`} data-anim="pcard">
-                  <div className={styles.pLabel}>Quick start</div>
-                  <p className={styles.qsText}>
-                    Make your first API call in under five minutes.
-                  </p>
-                  <span className={styles.cta}>Start now →</span>
-                </div>
-                <div className={`${styles.pcard} ${styles.statsCard}`} data-anim="pcard">
-                  {stats.map((s) => (
-                    <div key={s.label}>
-                      <span className={styles.statValue} data-count={s.value}>
-                        {s.value}
-                      </span>
-                      <span className={styles.statLabel}>{s.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className={styles.finalGrid} data-anim="finalGrid">
+              {finalShots.map((shot) => (
+                <figure key={shot.src} className={styles.finalShot} data-anim="final">
+                  <div className={styles.finalFrame}>
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={shot.width}
+                      height={shot.height}
+                      unoptimized
+                      className={styles.finalImg}
+                    />
+                  </div>
+                  <figcaption className={styles.caption}>{shot.label}</figcaption>
+                </figure>
+              ))}
             </div>
-            <p className={styles.caption}>
-              Representative view of the final Portal design.
-            </p>
+            {study.finalDesign.prototypeUrl && (
+              <a
+                className={styles.protoLink}
+                href={study.finalDesign.prototypeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-fade
+              >
+                Click through the Figma prototype →
+              </a>
+            )}
           </div>
         </section>
 

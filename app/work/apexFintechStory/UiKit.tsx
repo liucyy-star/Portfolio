@@ -9,11 +9,16 @@ import {
   quickStartVariants,
   navGroups,
   footerColumns,
+  kitAccents,
+  credentials,
+  stats,
+  accountTabs,
+  accountRows,
 } from "./storyContent";
 import type { KitSwatch, NavIcon, QuickStartVariant } from "./storyContent";
 
 // Small line icons, drawn to match the ones in the kit.
-const icons: Record<NavIcon | "rocket" | "collapse" | "expand" | "arrow", ReactElement> = {
+const icons: Record<NavIcon | "rocket" | "collapse" | "expand" | "arrow" | "sun" | "moon" | "key" | "bulb", ReactElement> = {
   portal: (
     <svg viewBox="0 0 24 24">
       <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
@@ -50,6 +55,29 @@ const icons: Record<NavIcon | "rocket" | "collapse" | "expand" | "arrow", ReactE
   expand: (
     <svg viewBox="0 0 24 24">
       <path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5" />
+    </svg>
+  ),
+  sun: (
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
+    </svg>
+  ),
+  moon: (
+    <svg viewBox="0 0 24 24">
+      <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />
+    </svg>
+  ),
+  key: (
+    <svg viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <circle cx="12" cy="12" r="3.2" />
+      <path d="M12 6.5v2.3M12 15.2v2.3M6.5 12h2.3M15.2 12h2.3" />
+    </svg>
+  ),
+  bulb: (
+    <svg viewBox="0 0 24 24">
+      <path d="M9 17h6M10 20h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z" />
     </svg>
   ),
   arrow: (
@@ -229,12 +257,157 @@ function Footer() {
   );
 }
 
+function Accents() {
+  return (
+    <ul className={styles.kitAccents}>
+      {kitAccents.map((a) => (
+        <li key={a.hex} className={styles.kitAccent} data-anim="kit-swatch">
+          <span className={styles.kitAccentChip} style={{ background: a.hex, color: a.ink }}>
+            {a.hex.slice(1)}
+          </span>
+          <span className={styles.kitAccentName}>{a.name}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// The light/dark switch from the Portal header, driving the two cards beside it.
+function ThemeCards() {
+  const [dark, setDark] = useState(false);
+  const [tab, setTab] = useState(0);
+
+  return (
+    <div className={`${styles.kitTheme} ${dark ? styles.kitThemeDark : ""}`}>
+      <div className={styles.kitThemeBar}>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={dark}
+          aria-label="Dark mode"
+          className={styles.kitToggle}
+          onClick={() => setDark(!dark)}
+        >
+          <span className={styles.kitToggleKnob}>
+            <Icon name={dark ? "moon" : "sun"} />
+          </span>
+        </button>
+        <span className={styles.kitThemeLabel}>{dark ? "Dark mode" : "Light mode"}</span>
+      </div>
+
+      <div className={styles.kitThemeGrid}>
+        <div className={styles.kitCred}>
+          <div className={styles.kitCredHead}>
+            <h4 className={styles.kitCredTitle}>
+              <Icon name="key" /> Credentials
+            </h4>
+            <span className={styles.kitPill}>29 days left of trial</span>
+          </div>
+          {credentials.map((c) => (
+            <div key={c.label} className={styles.kitCredRow}>
+              <span className={styles.kitCredLabel}>{c.label}:</span>
+              <span>{c.value}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.kitTable}>
+          <h4 className={styles.kitTableTitle}>View Accounts &amp; Activities</h4>
+          <div className={styles.kitTabs} role="tablist">
+            {accountTabs.map((t, i) => (
+              <button
+                key={t}
+                type="button"
+                role="tab"
+                aria-selected={tab === i}
+                className={`${styles.kitTab} ${tab === i ? styles.kitTabOn : ""}`}
+                onClick={() => setTab(i)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Account ID</th>
+                <th>Equity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {accountRows.map((r, i) => (
+                <tr key={i}>
+                  <td>{r.name}</td>
+                  <td>{r.id}</td>
+                  <td>{r.equity}</td>
+                  <td>{r.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Overview() {
+  return (
+    <div className={styles.kitStats} data-anim="kit-piece">
+      {stats.map((s) => (
+        <div key={s.label}>
+          <span className={styles.kitStatLabel}>{s.label}</span>
+          <span className={styles.kitStatValue}>{s.value}</span>
+          <span className={styles.kitStatDelta}>+0.00% from last week</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Banner() {
+  return (
+    <div className={styles.kitBanner} data-anim="kit-piece">
+      <span className={styles.kitBannerBadge}>
+        <Icon name="bulb" />
+      </span>
+      <div className={styles.kitBannerText}>
+        <h4>Portal Tutorials</h4>
+        <p>Super sick internal tutorials to learn about how to use the portal</p>
+      </div>
+      <span className={styles.kitBannerCta}>View Here</span>
+    </div>
+  );
+}
+
 export default function UiKit() {
   return (
     <div className={styles.kit}>
       <div className={styles.kitPalette} data-anim="kit-palette">
         <Scale name="Shades" swatches={kitShades} />
         <Scale name="Tints" swatches={kitTints} />
+        <div className={styles.kitScale}>
+          <p className={styles.kitLabel}>Surfaces &amp; accents</p>
+          <Accents />
+        </div>
+      </div>
+
+      <div className={styles.kitBlock} data-anim="kit-piece">
+        <p className={styles.kitLabel}>Dashboard cards, light and dark (try the switch)</p>
+        <ThemeCards />
+      </div>
+
+      <div className={`${styles.kitBlock} ${styles.kitStack}`}>
+        <div>
+          <p className={styles.kitLabel}>Overview stats</p>
+          <Overview />
+        </div>
+        <div>
+          <p className={styles.kitLabel}>Tutorial banner</p>
+          <Banner />
+        </div>
       </div>
 
       <div className={styles.kitBlock}>

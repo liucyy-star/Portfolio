@@ -17,6 +17,25 @@ export type CompetitorRow = {
   isApex?: boolean;
 };
 
+export const finalShots: Shot[] = [
+  {
+    src: "/case-studies/apex/final-light.webp",
+    alt: "Final Apex sandbox Portal in light mode: credentials, quick start, overview stats, accounts table, API calls chart, developer toolkit and tutorials",
+    width: 801,
+    height: 2000,
+    label: "Light mode",
+    caption: "",
+  },
+  {
+    src: "/case-studies/apex/final-dark.webp",
+    alt: "Final Apex sandbox Portal in dark mode with the same layout",
+    width: 801,
+    height: 2000,
+    label: "Dark mode",
+    caption: "",
+  },
+];
+
 export const heroShot: Shot = {
   src: "/case-studies/apex/dashboard-mid2.png",
   alt: "Sandbox dashboard with Quick Start, Developer Portal and Credentials cards",
@@ -131,18 +150,25 @@ export type Credential = { label: string; value: string };
 export type Stat = { value: string; label: string };
 
 // Sample data shown inside the coded Portal mockup.
+// Copy shown on the final Portal, reused by the UI kit's dashboard cards.
 export const credentials: Credential[] = [
-  { label: "Endpoint", value: "api.sandbox.apex.dev" },
-  { label: "Sandbox account", value: "SBX-40921" },
-  { label: "API key", value: "•••• a91f" },
-  { label: "Client ID", value: "clt_8842xz" },
+  { label: "Endpoint", value: "https://portal.apex.com/" },
+  { label: "Service Account", value: "sandbox_07_01" },
+  { label: "API Key", value: "JHK8s9RhMiilF1Sage" },
+  { label: "Client ID", value: "JHK8s9RhMiilF1Sage" },
 ];
 
 export const stats: Stat[] = [
-  { value: "128", label: "Active accounts" },
-  { value: "642", label: "Orders this week" },
-  { value: "$2.4M", label: "Assets under management" },
-  { value: "18.3k", label: "API calls" },
+  { value: "2", label: "# Active Accounts" },
+  { value: "2", label: "# Orders this Week" },
+  { value: "$2,456", label: "Assets Under Management" },
+];
+
+export const accountTabs = ["Accounts", "Orders", "Trades"];
+
+export const accountRows = [
+  { name: "Johnathan Doe", id: "JHSNe8239&@^937", equity: "USD 0.00", status: "Active" },
+  { name: "Johnathan Doe", id: "JHSNe8239&@^937", equity: "USD 0.00", status: "Active" },
 ];
 
 // UI kit, taken from the kit board in the original deck.
@@ -163,6 +189,16 @@ export const kitTints: KitSwatch[] = [
   "#052391", "#1e399c", "#374fa7", "#5065b2", "#697bbd", "#8291c8",
   "#9ba7d3", "#b4bdde", "#cdd3e9", "#e6e9f4", "#ffffff",
 ].map((hex, i) => kitInk(hex, i >= 6));
+
+// Surfaces and accents pulled from the final Portal, light and dark.
+export const kitAccents: { hex: string; ink: string; name: string }[] = [
+  { hex: "#8ad7f5", ink: "#01071d", name: "Action cyan" },
+  { hex: "#d8ccde", ink: "#2c2e4b", name: "Lilac card" },
+  { hex: "#e7eaf4", ink: "#052391", name: "Mist card" },
+  { hex: "#9ca7d3", ink: "#052391", name: "Chart card" },
+  { hex: "#2c2e4b", ink: "#e6e9f4", name: "Dusk card" },
+  { hex: "#030b2f", ink: "#e6e9f4", name: "Night page" },
+];
 
 export type QuickStartVariant = "filled" | "outline" | "link" | "linkEnd";
 
