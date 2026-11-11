@@ -4,9 +4,9 @@ export const apexFintech: CaseStudy = {
   slug: "apexFintechStory",
   accent: "1",
   bouquet: ["card", "chart", "coin", "code", "api", "lock"],
-  thumbnail: { src: "/case-studies/apex/dashboard-mid2.png", alt: "Apex sandbox dashboard with Quick Start, Developer Portal and Credentials cards", position: "top left" },
+  thumbnail: { src: "/case-studies/apex/final-hero.webp", alt: "Final Apex sandbox Portal in dark mode: credentials, Quick Start and account overview", position: "top left" },
   tag: "Fintech",
-  title: "Apex Fintech — Sandbox MVP",
+  title: "Apex Fintech Solutions — Sandbox MVP",
   oneLiner:
     "Designed Apex's first self-serve sandbox so prospective clients could try its APIs before talking to sales.",
   role: "UX Design Intern",
@@ -14,7 +14,7 @@ export const apexFintech: CaseStudy = {
   tools: "Figma",
   team: "PM, Product Devs, Chief Engineer",
 
-  heroTitle: "Designing the first sandbox environment for Apex Fintech",
+  heroTitle: "Designing the first sandbox environment for Apex Fintech Solutions",
   heroSub:
     "A self-serve trial environment that let prospective clients evaluate Apex’s investment APIs before ever signing a contract, built from research through final UI in ten weeks.",
 
@@ -45,6 +45,13 @@ export const apexFintech: CaseStudy = {
         background: "MS Computer Science, age 36",
         quote: "“My company needs an easy-to-integrate platform for new features.”",
         traits: ["Strategic", "Technical", "Reliable", "Concise"],
+        core: "Technical",
+        photo: "/case-studies/apex/persona-michael.webp",
+        behaviors: [
+          "A self-learner who explores on his own and wants key info up front",
+          "Booked solid with cross-team meetings; avoids calls unless necessary",
+          "Highly organized: cares that docs are digestible, not pretty",
+        ],
       },
       {
         name: "Barbara Starla",
@@ -53,14 +60,28 @@ export const apexFintech: CaseStudy = {
         background: "MBA, age 38",
         quote: "“I need to understand Apex’s APIs for competitive research.”",
         traits: ["Thorough", "Non-tech", "Inquisitive", "Broker expert"],
+        core: "Non-tech",
+        photo: "/case-studies/apex/persona-barbara.webp",
+        behaviors: [
+          "Not technical, but persistent in asking questions until it clicks",
+          "Needs the high-level picture: constraints, outline, how the parts fit",
+          "Extroverted and efficient; protects her work/life balance",
+        ],
       },
       {
         name: "Alfredo Sanchez",
         role: "CEO / CTO",
         location: "New York City, NY",
-        background: "BS Computer Science, age 27",
+        background: "BS Computer Science, age 25",
         quote: "“I need a platform that will take my startup to the next level.”",
         traits: ["Ambitious", "Impatient", "Energetic", "Adventurous"],
+        core: "Impatient",
+        photo: "/case-studies/apex/persona-alfredo.webp",
+        behaviors: [
+          "Grew up online and reads UX cues (buttons, layout) instantly",
+          "Racing to launch an MVP before upcoming conferences",
+          "Likes control and values polished, good-looking design",
+        ],
       },
     ],
   },

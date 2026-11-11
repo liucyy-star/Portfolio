@@ -18,11 +18,11 @@ export type CompetitorRow = {
 };
 
 export const heroShot: Shot = {
-  src: "/case-studies/apex/dashboard-mid2.png",
-  alt: "Sandbox dashboard with Quick Start, Developer Portal and Credentials cards",
-  width: 5440,
-  height: 3932,
-  label: "Sandbox dashboard",
+  src: "/case-studies/apex/final-hero.webp",
+  alt: "Final Apex sandbox Portal in dark mode: credentials, Quick Start and account overview",
+  width: 801,
+  height: 536,
+  label: "Final Portal",
   caption: "",
 };
 

@@ -25,3 +25,6 @@ yarn-error.log*
 
 # original design files (read-only source, not published)
 /_source/
+
+# click-to-comment notes from the dev overlay (components/SiteNotes.tsx)
+/site-notes.json

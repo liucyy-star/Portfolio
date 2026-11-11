@@ -82,7 +82,7 @@
 
 
 /* sections */
-.section { padding: 9vh 0; border-top: 1px solid var(--pale); }
+.section { padding: var(--case-section-y) 0; border-top: 1px solid var(--pale); }
 .kicker { font-family: var(--font-mono), monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lav); margin-bottom: 10px; }
 .h2 { color: var(--navy); font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.2; margin: 0 0 20px; }
 .prose { font-size: 1.05rem; line-height: 1.7; max-width: 680px; margin: 0 0 16px; }

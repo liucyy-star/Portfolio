@@ -1,0 +1,332 @@
+/* Dev-only click-to-comment overlay. Deliberately neutral so it reads as a
+   tool sitting on top of the site, not part of the design. */
+
+.root {
+  --sn-ink: #16141f;
+  --sn-paper: #ffffff;
+  --sn-muted: #6b6676;
+  --sn-line: rgba(22, 20, 31, 0.12);
+  --sn-accent: #7c3aed;
+  --sn-done: #16a34a;
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--sn-ink);
+}
+
+.pickingCursor,
+.pickingCursor * {
+  cursor: crosshair !important;
+}
+
+/* hover outline */
+.hover {
+  position: fixed;
+  display: none;
+  z-index: 10000;
+  pointer-events: none;
+  border: 2px dashed var(--sn-accent);
+  background: rgba(124, 58, 237, 0.08);
+  border-radius: 3px;
+}
+.hoverLabel {
+  position: absolute;
+  left: -2px;
+  bottom: 100%;
+  max-width: 320px;
+  margin-bottom: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--sn-accent);
+  color: #fff;
+  font: 12px/1.4 ui-monospace, Consolas, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* pins */
+.pin {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10001;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  background: var(--sn-accent);
+  color: #fff;
+  font: 700 11px/20px system-ui, sans-serif;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.pinDone {
+  background: var(--sn-done);
+  opacity: 0.7;
+}
+.pinFlash {
+  animation: sn-pulse 0.5s ease 3;
+}
+@keyframes sn-pulse {
+  50% {
+    box-shadow: 0 0 0 10px rgba(124, 58, 237, 0.25);
+  }
+}
+
+/* shared buttons */
+.primary,
+.ghost,
+.add,
+.listBtn,
+.actions button {
+  font: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.primary {
+  border: 0;
+  padding: 7px 12px;
+  background: var(--sn-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.primary:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ghost {
+  border: 1px solid var(--sn-line);
+  padding: 6px 10px;
+  background: transparent;
+  color: var(--sn-ink);
+}
+
+/* composer */
+.composer {
+  position: fixed;
+  z-index: 10003;
+  width: 320px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--sn-paper);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22), 0 0 0 1px var(--sn-line);
+}
+.composerTarget {
+  margin-bottom: 8px;
+  font: 12px/1.4 ui-monospace, Consolas, monospace;
+  color: var(--sn-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: 88px;
+  padding: 8px 10px;
+  border: 1px solid var(--sn-line);
+  border-radius: 8px;
+  font: inherit;
+  color: var(--sn-ink);
+  background: #fff;
+  resize: vertical;
+}
+.textarea:focus {
+  outline: 2px solid var(--sn-accent);
+  outline-offset: -1px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.hint {
+  margin-right: auto;
+  font-size: 12px;
+  color: var(--sn-muted);
+}
+
+/* launcher (bottom-left; the story pages use bottom-right) */
+.launcher {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 10002;
+  display: flex;
+  gap: 6px;
+}
+.add,
+.listBtn {
+  border: 0;
+  padding: 9px 14px;
+  background: var(--sn-ink);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.addActive {
+  background: var(--sn-accent);
+}
+.badge {
+  display: inline-block;
+  min-width: 20px;
+  margin-left: 4px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--sn-accent);
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* panel */
+.panel {
+  position: fixed;
+  left: 16px;
+  bottom: 64px;
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 32px));
+  max-height: min(70vh, 640px);
+  border-radius: 14px;
+  background: var(--sn-paper);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--sn-line);
+  overflow: hidden;
+}
+.panelHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--sn-line);
+}
+.count {
+  color: var(--sn-muted);
+  font-size: 13px;
+}
+.close {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--sn-muted);
+  cursor: pointer;
+}
+.toggles {
+  display: flex;
+  gap: 16px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--sn-muted);
+  border-bottom: 1px solid var(--sn-line);
+}
+.toggles label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.error {
+  margin: 0;
+  padding: 8px 14px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+}
+.empty {
+  margin: 0;
+  padding: 18px 14px;
+  color: var(--sn-muted);
+}
+.empty kbd {
+  padding: 0 4px;
+  border: 1px solid var(--sn-line);
+  border-radius: 4px;
+  font: 12px ui-monospace, Consolas, monospace;
+}
+.list {
+  overflow-y: auto;
+  padding: 4px 0 8px;
+}
+.pageName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 14px 4px;
+  font: 600 12px/1.4 ui-monospace, Consolas, monospace;
+  color: var(--sn-muted);
+}
+.here {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--sn-accent);
+  font: 600 11px/18px system-ui, sans-serif;
+}
+.item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 14px;
+  transition: background 0.3s ease;
+}
+.itemFlash {
+  background: rgba(124, 58, 237, 0.1);
+}
+.itemDone .noteText {
+  text-decoration: line-through;
+  color: var(--sn-muted);
+}
+.itemDone .num {
+  background: var(--sn-done);
+}
+.num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--sn-accent);
+  color: #fff;
+  font: 700 11px/22px system-ui, sans-serif;
+  text-align: center;
+}
+.body {
+  min-width: 0;
+  flex: 1;
+}
+.noteText {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ctx {
+  margin: 2px 0 0;
+  font: 12px/1.4 ui-monospace, Consolas, monospace;
+  color: var(--sn-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.actions button {
+  border: 1px solid var(--sn-line);
+  padding: 3px 9px;
+  background: transparent;
+  color: var(--sn-ink);
+  font-size: 12px;
+}
+.actions button:hover {
+  border-color: var(--sn-accent);
+}
+.actions .danger:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
