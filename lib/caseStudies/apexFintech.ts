@@ -72,7 +72,7 @@ export const apexFintech: CaseStudy = {
         name: "Alfredo Sanchez",
         role: "CEO / CTO",
         location: "New York City, NY",
-        background: "BS Computer Science, age 27",
+        background: "BS Computer Science, age 25",
         quote: "“I need a platform that will take my startup to the next level.”",
         traits: ["Ambitious", "Impatient", "Energetic", "Adventurous"],
         core: "Impatient",
