@@ -228,7 +228,9 @@
   padding: 36px;
   border-radius: 16px;
   background: var(--surface);
-  box-shadow: 6px 6px 0 var(--accent-1), 12px 12px 0 var(--pop-yellow);
+  /* one color, taken from the piece being shown (set in PaperOverlay) */
+  box-shadow: 10px 10px 0 var(--panel-pop, var(--line));
+  transition: box-shadow 0.35s ease;
   animation: panelIn 0.5s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .panelKicker {
@@ -357,7 +359,7 @@
     max-height: none;
     overflow: visible;
     padding: 24px;
-    box-shadow: 4px 4px 0 var(--accent-1), 8px 8px 0 var(--pop-yellow);
+    box-shadow: 7px 7px 0 var(--panel-pop, var(--line));
     margin-right: 8px;
   }
 }

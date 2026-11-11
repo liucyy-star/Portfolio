@@ -34,6 +34,7 @@ export interface CaseStudy {
   slug: string; // becomes the URL: /work/<slug>
   accent: Accent;
   tag: string;
+  extraTags?: string[]; // more pills shown after `tag` on the homepage card
   title: string;
   oneLiner: string;
   role: string;

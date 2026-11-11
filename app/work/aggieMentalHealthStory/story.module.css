@@ -644,3 +644,14 @@
 .footerLink:hover {
   color: #fff;
 }
+
+/* "Up next" card (components/NextProject): white card on the sage band */
+.nextProject {
+  --np-surface: var(--surface);
+  --np-ink: var(--ink);
+  --np-muted: var(--muted);
+  --np-accent: var(--sage-deep);
+  --np-line: var(--line);
+  --np-outside: var(--ink);
+  --np-back-line: var(--sun);
+}

@@ -39,6 +39,12 @@ h3,
   font-family: var(--font-display), sans-serif;
   letter-spacing: -0.02em;
 }
+/* even out heading lines so a single word never wraps onto its own line */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
 .mono {
   font-family: var(--font-mono), monospace;
   letter-spacing: 0.02em;
@@ -424,9 +430,10 @@ body:has([data-nav-theme="dark"]) {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: inline-block;
 }
+/* one pop color, re-picked on every hover by components/ButtonPop.tsx */
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 4px 4px 0 var(--accent-1), 8px 8px 0 var(--pop-yellow);
+  box-shadow: 6px 6px 0 var(--btn-pop, var(--accent-1));
 }
 .btn.ghost {
   background: transparent;
@@ -559,6 +566,12 @@ body:has([data-nav-theme="dark"]) {
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
+}
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-right: 140px; /* room for "Read case study" on the same row */
 }
 .card-tag {
   font-size: 0.72rem;

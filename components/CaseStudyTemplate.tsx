@@ -4,6 +4,7 @@ import type { CaseStudy, Step } from "@/lib/caseStudies/types";
 import ReadingProgress from "@/components/readingProgress";
 import Link from "next/link";
 import { caseStudies } from "@/lib/caseStudies";
+import NextProject from "@/components/NextProject";
 
 export default function CaseStudyTemplate({
   study,
@@ -222,13 +223,7 @@ const toc = [
         {next && (
       <section className={styles.next}>
         <div className={styles.wrap}>
-          <div className={styles.kicker}>Want to read more?</div>
-          <Link href={`/work/${next.slug}`} className={styles.nextCard}>
-            <span className={styles.nextTag}>{next.tag}</span>
-            <h2 className={styles.h2}>{next.title}</h2>
-            <p className={styles.prose}>{next.oneLiner}</p>
-            <span className={styles.cta}>Read case study →</span>
-          </Link>
+          <NextProject slug={study.slug} showBackLink={false} />
         </div>
       </section>
     )}

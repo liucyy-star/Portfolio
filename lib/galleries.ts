@@ -17,7 +17,7 @@ export type Gallery = {
 
 export const graphicDesign: Gallery = {
   kicker: "beyond ux",
-  title: "Graphic design",
+  title: "Graphic Design",
   intro: "Posters, branding, and visual pieces where I get to play with color and type.",
   items: [
     {
@@ -176,7 +176,7 @@ export const graphicDesign: Gallery = {
 export const photography: Gallery = {
   kicker: "beyond ux",
   title: "Photography",
-  intro: "A collection of places and people seen through my lens. Each series shows my eye for composition growing over time.",
+  intro: "A collection of places and people seen through my lens.",
   items: [
     {
       src: "/photography/photo-01.jpg", width: 891, height: 1192,

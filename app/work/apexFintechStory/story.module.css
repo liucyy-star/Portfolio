@@ -1455,3 +1455,12 @@
   font-weight: 600;
   font-size: 0.85rem;
 }
+
+/* "Up next" card (components/NextProject) in this page's dark palette */
+.nextProject {
+  --np-surface: var(--surface);
+  --np-ink: var(--ink);
+  --np-muted: var(--muted);
+  --np-accent: var(--accent);
+  --np-line: var(--line);
+}

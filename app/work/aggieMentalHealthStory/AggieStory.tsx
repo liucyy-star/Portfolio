@@ -3,13 +3,13 @@
 import { useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import { navOffset, useReducedMotion, useSmoothScroll } from "@/hooks/useStoryMotion";
 import styles from "./story.module.css";
+import NextProject from "@/components/NextProject";
 import { aggieMentalHealth as study } from "@/lib/caseStudies/aggieMentalHealth";
 import {
   briefWords,
@@ -680,9 +680,7 @@ export default function AggieStory() {
           <h2 className={`${styles.h2} ${styles.huge}`} data-split>
             be kind to yourself.
           </h2>
-          <Link href="/#work" className={styles.footerLink}>
-            ← Back to all work
-          </Link>
+          <NextProject slug={study.slug} className={styles.nextProject} />
         </div>
       </section>
     </div>

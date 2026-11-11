@@ -1,0 +1,128 @@
+.root {
+  --_surface: var(--np-surface, #fff);
+  --_ink: var(--np-ink, var(--ink));
+  --_muted: var(--np-muted, var(--muted));
+  --_accent: var(--np-accent, var(--accent-1));
+  --_line: var(--np-line, var(--line));
+  /* text that sits on the page background, outside the card */
+  --_outside: var(--np-outside, var(--_ink));
+  margin-top: var(--np-gap, 48px);
+}
+
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--_outside);
+}
+
+.card {
+  display: grid;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--_line);
+  background: var(--_surface);
+  color: var(--_ink);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@media (min-width: 760px) {
+  .card {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.45);
+}
+.card:focus-visible {
+  outline: 3px solid var(--_accent);
+  outline-offset: 4px;
+}
+
+.thumb {
+  position: relative;
+  display: block;
+  min-height: 220px;
+  background: var(--_line);
+}
+.thumb img {
+  transition: transform 0.6s ease;
+}
+.card:hover .thumb img {
+  transform: scale(1.04);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+}
+/* no thumbnail: the text spans the whole card */
+.card > .body:only-child {
+  grid-column: 1 / -1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--_line);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--_accent);
+}
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.oneLiner {
+  color: var(--_muted);
+  line-height: 1.6;
+}
+.cta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 600;
+  color: var(--_accent);
+}
+.cta span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.card:hover .cta span {
+  transform: translateX(4px);
+}
+
+.back {
+  display: inline-block;
+  margin-top: 22px;
+  padding-bottom: 3px;
+  color: var(--_outside);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--np-back-line, var(--_accent));
+}
+.back:hover {
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .thumb img,
+  .cta span {
+    transition: none;
+  }
+}

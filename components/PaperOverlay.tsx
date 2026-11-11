@@ -27,6 +27,52 @@ function fromPaper(origin: Origin, el: HTMLElement) {
   return `translate(${dx}px, ${dy}px) scale(${origin.w / r.width}, ${origin.h / r.height}) rotate(${origin.rot}deg)`;
 }
 
+/**
+ * The image's most prominent vivid color, as an rgb() string, for the panel's
+ * shadow. Samples a tiny copy: groups pixels by hue, weights each group by how
+ * saturated it is, and averages the winning group. Near-white, near-black and
+ * gray pixels are skipped; a fully gray image falls back to its average tone.
+ */
+function pickAccent(img: HTMLImageElement): string | null {
+  const N = 48;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = N;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  if (!ctx) return null;
+  try {
+    ctx.drawImage(img, 0, 0, N, N);
+    const px = ctx.getImageData(0, 0, N, N).data;
+    const buckets = Array.from({ length: 12 }, () => ({ w: 0, r: 0, g: 0, b: 0 }));
+    let gr = 0, gg = 0, gb = 0, gn = 0;
+    for (let i = 0; i < px.length; i += 4) {
+      const r = px[i] / 255, g = px[i + 1] / 255, b = px[i + 2] / 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      const l = (max + min) / 2;
+      const s = max === min ? 0 : (max - min) / (1 - Math.abs(2 * l - 1));
+      gr += r; gg += g; gb += b; gn++;
+      if (l < 0.12 || l > 0.9 || s < 0.28) continue;
+      let h = 0;
+      if (max === r) h = ((g - b) / (max - min) + 6) % 6;
+      else if (max === g) h = (b - r) / (max - min) + 2;
+      else h = (r - g) / (max - min) + 4;
+      const bucket = buckets[Math.floor(h * 2) % 12];
+      const w = s * s; // favor the punchy colors
+      bucket.w += w; bucket.r += r * w; bucket.g += g * w; bucket.b += b * w;
+    }
+    const best = buckets.reduce((a, c) => (c.w > a.w ? c : a));
+    const to255 = (v: number) => Math.round(v * 255);
+    if (best.w < 2) {
+      // nothing vivid (black & white photo): use a mid-tone of its average
+      const avg = (gr + gg + gb) / (3 * gn);
+      const t = to255(Math.min(0.62, Math.max(0.38, avg)));
+      return `rgb(${t}, ${t}, ${t})`;
+    }
+    return `rgb(${to255(best.r / best.w)}, ${to255(best.g / best.w)}, ${to255(best.b / best.w)})`;
+  } catch {
+    return null; // canvas tainted or image not decodable
+  }
+}
+
 function orientation({ width, height }: GalleryItem) {
   const ratio = width / height;
   return ratio > 1.05 ? "Landscape" : ratio < 0.95 ? "Portrait" : "Square";
@@ -40,6 +86,7 @@ export default function PaperOverlay({ items, index, series, getOrigin, onNaviga
   const closeRef = useRef<HTMLButtonElement>(null);
   const firstIndex = useRef(index); // only the first piece flies up; flipping crossfades
   const [closing, setClosing] = useState(false);
+  const [accent, setAccent] = useState<string | null>(null); // pulled from the image
   const [placeholder] = useState(() => getOrigin(index)?.src); // the desk's small copy, shown while the big one loads
 
   // Lift: fly the image up from its paper, lock the page, focus the dialog.
@@ -130,6 +177,7 @@ export default function PaperOverlay({ items, index, series, getOrigin, onNaviga
           height={item.height}
           sizes="(max-width: 860px) 92vw, 60vw"
           priority
+          onLoad={(e) => setAccent(pickAccent(e.currentTarget))}
           className={`${styles.liftImg}${flipped ? ` ${styles.flip}` : ""}`}
           style={{
             ["--ratio" as string]: item.width / item.height,
@@ -138,7 +186,10 @@ export default function PaperOverlay({ items, index, series, getOrigin, onNaviga
         />
       </div>
 
-      <aside className={styles.panel}>
+      <aside
+        className={styles.panel}
+        style={accent ? { ["--panel-pop" as string]: accent } : undefined}
+      >
         <div className={`mono ${styles.panelKicker}`}>
           No. {String(index + 1).padStart(2, "0")} / {total}
         </div>

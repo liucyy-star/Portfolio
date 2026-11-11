@@ -6,6 +6,7 @@ export const apexFintech: CaseStudy = {
   bouquet: ["card", "chart", "coin", "code", "api", "lock"],
   thumbnail: { src: "/case-studies/apex/final-hero.webp", alt: "Final Apex sandbox Portal in dark mode: credentials, Quick Start and account overview", position: "top left" },
   tag: "Fintech",
+  extraTags: ["Dashboard design"],
   title: "Apex Fintech Solutions — Sandbox MVP",
   oneLiner:
     "Designed Apex's first self-serve sandbox so prospective clients could try its APIs before talking to sales.",

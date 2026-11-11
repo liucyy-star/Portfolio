@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SiteNotes from "@/components/SiteNotes";
+import ButtonPop from "@/components/ButtonPop";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <ButtonPop />
         {/* click-to-comment notes; dev only, stripped from production builds */}
         {process.env.NODE_ENV === "development" && <SiteNotes />}
       </body>

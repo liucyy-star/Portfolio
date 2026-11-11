@@ -158,3 +158,5 @@
 
 /* footer */
 .footer { padding: 6vh 6vw; text-align: center; background: var(--navy); color: #fff; font-size: 0.85rem; }
+/* "Up next" card (components/NextProject) in this page's colors */
+.next { --np-accent: var(--lav); --np-ink: var(--navy); --np-outside: var(--navy); --np-gap: 0px; }

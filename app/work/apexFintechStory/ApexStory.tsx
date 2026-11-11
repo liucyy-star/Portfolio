@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -23,6 +22,7 @@ import {
 import UiKit from "./UiKit";
 import LivePortal from "./LivePortal";
 import ZoomableImage from "@/components/ZoomableImage";
+import NextProject from "@/components/NextProject";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -745,9 +745,7 @@ export default function ApexStory() {
           <h2 className={`${styles.h2} ${styles.huge}`} data-split>
             Thanks for scrolling.
           </h2>
-          <Link href="/#work" className={styles.footerLink}>
-            ← Back to all work
-          </Link>
+          <NextProject slug={study.slug} className={styles.nextProject} />
         </div>
       </section>
     </div>

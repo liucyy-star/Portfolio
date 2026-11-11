@@ -81,7 +81,13 @@ export default function CaseStudyCard({
 
         <div className="card-top">
           <div>
-            <span className="card-tag">{study.tag}</span>
+            <div className="card-tags">
+              {[study.tag, ...(study.extraTags ?? [])].map((t) => (
+                <span key={t} className="card-tag">
+                  {t}
+                </span>
+              ))}
+            </div>
             <h3>{study.title}</h3>
             <p className="one-liner">{study.oneLiner}</p>
           </div>
