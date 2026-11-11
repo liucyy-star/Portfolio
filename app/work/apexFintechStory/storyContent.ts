@@ -17,25 +17,6 @@ export type CompetitorRow = {
   isApex?: boolean;
 };
 
-export const finalShots: Shot[] = [
-  {
-    src: "/case-studies/apex/final-light.webp",
-    alt: "Final Apex sandbox Portal in light mode: credentials, quick start, overview stats, accounts table, API calls chart, developer toolkit and tutorials",
-    width: 801,
-    height: 2000,
-    label: "Light mode",
-    caption: "",
-  },
-  {
-    src: "/case-studies/apex/final-dark.webp",
-    alt: "Final Apex sandbox Portal in dark mode with the same layout",
-    width: 801,
-    height: 2000,
-    label: "Dark mode",
-    caption: "",
-  },
-];
-
 export const heroShot: Shot = {
   src: "/case-studies/apex/dashboard-mid2.png",
   alt: "Sandbox dashboard with Quick Start, Developer Portal and Credentials cards",
@@ -149,8 +130,7 @@ export const evolution: Shot[] = [
 export type Credential = { label: string; value: string };
 export type Stat = { value: string; label: string };
 
-// Sample data shown inside the coded Portal mockup.
-// Copy shown on the final Portal, reused by the UI kit's dashboard cards.
+// Copy from the final Portal, shared by the live Portal window and the UI kit.
 export const credentials: Credential[] = [
   { label: "Endpoint", value: "https://portal.apex.com/" },
   { label: "Service Account", value: "sandbox_07_01" },
@@ -164,11 +144,64 @@ export const stats: Stat[] = [
   { value: "$2,456", label: "Assets Under Management" },
 ];
 
-export const accountTabs = ["Accounts", "Orders", "Trades"];
+// One table per tab on the Accounts & Activities card.
+export type ActivityTable = { tab: string; columns: string[]; rows: string[][] };
 
-export const accountRows = [
-  { name: "Johnathan Doe", id: "JHSNe8239&@^937", equity: "USD 0.00", status: "Active" },
-  { name: "Johnathan Doe", id: "JHSNe8239&@^937", equity: "USD 0.00", status: "Active" },
+export const activityTables: ActivityTable[] = [
+  {
+    tab: "Accounts",
+    columns: ["Name", "Account ID", "Equity", "Status"],
+    rows: [
+      ["Johnathan Doe", "JHSNe8239&@^937", "USD 0.00", "Active"],
+      ["Johnathan Doe", "JHSNe8239&@^937", "USD 0.00", "Active"],
+    ],
+  },
+  {
+    tab: "Orders",
+    columns: ["Symbol", "Side", "Qty", "Status"],
+    rows: [
+      ["AAPL", "Buy", "10", "Filled"],
+      ["TSLA", "Sell", "4", "Pending"],
+    ],
+  },
+  {
+    tab: "Trades",
+    columns: ["Symbol", "Price", "Qty", "Settled"],
+    rows: [
+      ["AAPL", "USD 189.40", "10", "T+1"],
+      ["MSFT", "USD 412.10", "2", "T+1"],
+    ],
+  },
+];
+
+// The final Portal's API Calls chart (max 40 on the axis).
+export const apiCalls = [
+  { name: "create_accounts", value: 38 },
+  { name: "del_account", value: 22 },
+  { name: "apiName_here", value: 30 },
+];
+
+export type ToolkitIcon = "doc" | "tools" | "chart";
+
+export const toolkitCards: { title: string; body: string; cta: string; icon: ToolkitIcon }[] = [
+  {
+    title: "API References",
+    body: "Crazy good documentation about what our APIs do and what Apex does too!",
+    cta: "Read More",
+    icon: "doc",
+  },
+  {
+    title: "Try Our APIs",
+    body: "Try it yourself to see the beauty of our super awesome APIs and fall in love with its functionality!",
+    cta: "Start Here",
+    icon: "tools",
+  },
+  {
+    title: "Apex Online",
+    body: "Super sick internal tool that our awesome business-side uses for their operations",
+    cta: "Start Here",
+    icon: "chart",
+  },
 ];
 
 // UI kit, taken from the kit board in the original deck.

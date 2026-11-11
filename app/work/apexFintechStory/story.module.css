@@ -659,33 +659,6 @@
 
 /* ---------- final design ---------- */
 
-.finalGrid {
-  margin-top: 48px;
-  display: grid;
-  gap: 32px;
-  align-items: start;
-}
-@media (min-width: 900px) {
-  .finalGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-}
-.finalShot {
-  margin: 0;
-}
-.finalFrame {
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: 0 40px 120px -40px rgba(107, 140, 255, 0.3);
-}
-.finalImg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
 .protoLink {
   display: inline-block;
   margin-top: 40px;
@@ -1170,7 +1143,8 @@
 }
 
 /* themed dashboard cards */
-.kitTheme {
+/* Theme tokens for the dashboard cards, shared by the kit demo and the live Portal. */
+.kitVars {
   --k-page: #fcfbfc;
   --k-ink: #01071d;
   --k-muted: #6b7088;
@@ -1180,14 +1154,10 @@
   --k-table: #e7eaf4;
   --k-table-line: #b4bdde;
   --k-accent: #052391;
-  padding: 24px;
-  border-radius: 22px;
-  border: 1px solid var(--line);
-  background: var(--k-page);
-  color: var(--k-ink);
-  transition: background 0.35s ease, color 0.35s ease;
+  --k-chip: #061237;
+  --k-chip-ink: #ffffff;
 }
-.kitThemeDark {
+.kitVarsDark {
   --k-page: radial-gradient(120% 80% at 0% 0%, #10195a, #030b2f 60%);
   --k-ink: #ffffff;
   --k-muted: #9ba7d3;
@@ -1197,6 +1167,16 @@
   --k-table: #2f3450;
   --k-table-line: #cdd3e9;
   --k-accent: #cdd3e9;
+  --k-chip: #fdfdfd;
+  --k-chip-ink: #061237;
+}
+.kitTheme {
+  padding: 24px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--k-page);
+  color: var(--k-ink);
+  transition: background 0.35s ease, color 0.35s ease;
 }
 .kitThemeBar {
   display: flex;
@@ -1215,11 +1195,8 @@
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: #061237;
+  background: var(--k-chip);
   cursor: pointer;
-}
-.kitThemeDark .kitToggle {
-  background: #fdfdfd;
 }
 .kitToggle:focus-visible {
   outline: 2px solid #8ad7f5;
@@ -1238,7 +1215,7 @@
   color: #061237;
   transition: transform 0.3s ease, background 0.3s ease;
 }
-.kitThemeDark .kitToggleKnob {
+.kitVarsDark .kitToggleKnob {
   transform: translateX(28px);
   background: #061237;
   color: #fff;
