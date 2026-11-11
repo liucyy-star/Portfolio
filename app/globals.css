@@ -75,9 +75,34 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 20px 6vw;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+/* Glassy backdrop that runs past the bar's bottom edge and fades to nothing,
+   so the page shows through without a hard line. The mask fades the blur
+   along with the tint. Lives on ::before so the nav itself has no
+   backdrop-filter (which would trap the fixed menu overlay). */
+.site-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -28px 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--bg) 72%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 60%,
+    transparent 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+/* soft cream halo keeps the name and links legible over busy images */
+.site-nav .logo,
+.site-nav .nav-links a {
+  text-shadow: 0 0 12px color-mix(in srgb, var(--bg) 90%, transparent),
+    0 0 2px color-mix(in srgb, var(--bg) 80%, transparent);
 }
 .logo {
   font-weight: 700;
