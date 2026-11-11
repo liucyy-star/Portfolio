@@ -24,9 +24,9 @@
 
 .wrap {
   position: relative;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
-  padding: 0 6vw;
+  padding: 0 max(16px, 4vw);
 }
 
 /* ---------- fixed chrome ---------- */
@@ -114,7 +114,7 @@
   letter-spacing: -0.025em;
   text-transform: lowercase;
   margin: 0 0 28px;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 .huge {
   font-size: clamp(3rem, 10vw, 8rem);
@@ -125,7 +125,7 @@
   font-size: 1.12rem;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 62ch;
+  max-width: 70ch;
   margin: 0 0 20px;
 }
 
@@ -135,7 +135,7 @@
   font-weight: 600;
   letter-spacing: -0.015em;
   margin: 0 0 48px;
-  max-width: 28ch;
+  max-width: 32ch;
 }
 
 .caption {
@@ -206,7 +206,7 @@
   font-size: 1.3rem;
   line-height: 1.5;
   font-weight: 500;
-  max-width: 40ch;
+  max-width: 46ch;
   margin: 0 0 40px;
 }
 .meta {
@@ -236,7 +236,7 @@
   margin: 40px 0 0;
   display: grid;
   gap: 12px;
-  max-width: 62ch;
+  max-width: 70ch;
 }
 .rules li {
   padding: 16px 20px;
@@ -445,7 +445,7 @@
 .evoStack {
   display: grid;
   gap: 40px;
-  width: min(1100px, 92vw);
+  width: min(1180px, 92vw);
   margin: 0 auto;
 }
 .evoCard {
@@ -512,9 +512,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
-  padding: 0 6vw;
+  padding: 0 max(16px, 4vw);
 }
 .poster {
   margin: 0;
@@ -565,7 +565,7 @@
   align-items: flex-start;
   gap: 24px;
   width: max-content;
-  padding: 0 6vw;
+  padding: 0 max(16px, 4vw);
 }
 .panItem {
   display: flex;

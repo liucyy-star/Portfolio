@@ -25,9 +25,9 @@
 }
 
 .wrap {
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
-  padding: 0 6vw;
+  padding: 0 max(16px, 4vw);
 }
 
 /* ---------- fixed chrome ---------- */
@@ -116,7 +116,7 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   margin: 0 0 28px;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 .huge {
   font-size: clamp(3rem, 10vw, 8rem);
@@ -127,7 +127,7 @@
   font-size: 1.1rem;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 62ch;
+  max-width: 70ch;
   margin: 0 0 20px;
 }
 
@@ -138,7 +138,7 @@
   font-weight: 500;
   letter-spacing: -0.015em;
   margin: 0 0 48px;
-  max-width: 26ch;
+  max-width: 32ch;
 }
 
 .caption {
@@ -186,7 +186,7 @@
   font-size: 1.2rem;
   line-height: 1.6;
   color: var(--muted);
-  max-width: 54ch;
+  max-width: 62ch;
   margin: 0 0 40px;
 }
 .meta {
@@ -208,7 +208,7 @@
 }
 
 .heroShotWrap {
-  width: min(1100px, 92vw);
+  width: min(1180px, 92vw);
   margin: 12vh auto 0;
   perspective: 1400px;
 }
@@ -454,7 +454,7 @@
 }
 .panTrack {
   width: max-content;
-  padding: 0 6vw;
+  padding: 0 max(16px, 4vw);
 }
 .panImg {
   display: block;
@@ -598,7 +598,7 @@
 .evoStack {
   display: grid;
   gap: 40px;
-  width: min(1100px, 92vw);
+  width: min(1180px, 92vw);
   margin: 0 auto;
 }
 .evoCard {
