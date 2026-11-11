@@ -14,6 +14,8 @@
   --pop-green: #acd590;
   --pop-aqua: #6ecbea;
   --nav-h: 68px; /* height of the sticky top nav */
+  /* vertical padding between sections on every case study page */
+  --case-section-y: clamp(56px, 9vh, 96px);
 }
 
 * {

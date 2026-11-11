@@ -45,6 +45,13 @@ export const apexFintech: CaseStudy = {
         background: "MS Computer Science, age 36",
         quote: "“My company needs an easy-to-integrate platform for new features.”",
         traits: ["Strategic", "Technical", "Reliable", "Concise"],
+        core: "Technical",
+        photo: "/case-studies/apex/persona-michael.webp",
+        behaviors: [
+          "A self-learner who explores on his own and wants key info up front",
+          "Booked solid with cross-team meetings; avoids calls unless necessary",
+          "Highly organized: cares that docs are digestible, not pretty",
+        ],
       },
       {
         name: "Barbara Starla",
@@ -53,6 +60,13 @@ export const apexFintech: CaseStudy = {
         background: "MBA, age 38",
         quote: "“I need to understand Apex’s APIs for competitive research.”",
         traits: ["Thorough", "Non-tech", "Inquisitive", "Broker expert"],
+        core: "Non-tech",
+        photo: "/case-studies/apex/persona-barbara.webp",
+        behaviors: [
+          "Not technical, but persistent in asking questions until it clicks",
+          "Needs the high-level picture: constraints, outline, how the parts fit",
+          "Extroverted and efficient; protects her work/life balance",
+        ],
       },
       {
         name: "Alfredo Sanchez",
@@ -61,6 +75,13 @@ export const apexFintech: CaseStudy = {
         background: "BS Computer Science, age 27",
         quote: "“I need a platform that will take my startup to the next level.”",
         traits: ["Ambitious", "Impatient", "Energetic", "Adventurous"],
+        core: "Impatient",
+        photo: "/case-studies/apex/persona-alfredo.webp",
+        behaviors: [
+          "Grew up online and reads UX cues (buttons, layout) instantly",
+          "Racing to launch an MVP before upcoming conferences",
+          "Likes control and values polished, good-looking design",
+        ],
       },
     ],
   },

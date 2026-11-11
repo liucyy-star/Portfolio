@@ -16,6 +16,12 @@ export type Persona = {
   background: string;
   quote: string;
   traits: string[];
+  /** headshot from the persona sheet */
+  photo?: string;
+  /** behaviors / habits, a few short lines */
+  behaviors?: string[];
+  /** the one trait that sums them up; must match an entry in `traits` */
+  core?: string;
 };
 
 export type Step = { title: string; description: string; highlight?: boolean };

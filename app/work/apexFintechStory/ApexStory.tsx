@@ -22,6 +22,7 @@ import {
 } from "./storyContent";
 import UiKit from "./UiKit";
 import LivePortal from "./LivePortal";
+import ZoomableImage from "@/components/ZoomableImage";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -392,8 +393,8 @@ export default function ApexStory() {
 
             <div className={styles.problemRight}>
               <p className={styles.ideal}>
-                <strong>Ideal:</strong> a non-technical evaluator opens an
-                account on the spot.
+                <strong>Ideal user journey:</strong> a non-technical evaluator
+                opens an account on the spot.
               </p>
               <div className={styles.timeline}>
                 <div className={styles.track}>
@@ -459,7 +460,9 @@ export default function ApexStory() {
         <section className={`${styles.section} ${styles.pinned}`} data-pin="personas">
           <div className={`${styles.wrap} ${styles.personaLayout}`}>
             <div>
-              <p className={styles.kicker}>Research</p>
+              <p className={styles.kicker}>
+                Research · {personas.length} user personas
+              </p>
               <h2 className={styles.h2} data-split>
                 {study.research?.title}
               </h2>
@@ -479,14 +482,43 @@ export default function ApexStory() {
                       {String(i + 1).padStart(2, "0")} / 0{personas.length}
                     </span>
                   </div>
-                  <h3 className={styles.personaName}>{p.name}</h3>
-                  <p className={styles.personaMeta}>
-                    {p.location} · {p.background}
-                  </p>
+                  <div className={styles.personaHead}>
+                    {p.photo && (
+                      <Image
+                        src={p.photo}
+                        alt={`Portrait of ${p.name}`}
+                        width={160}
+                        height={160}
+                        className={styles.personaPhoto}
+                      />
+                    )}
+                    <div>
+                      <h3 className={styles.personaName}>{p.name}</h3>
+                      <p className={styles.personaMeta}>
+                        {p.location} · {p.background}
+                      </p>
+                    </div>
+                  </div>
                   <p className={styles.quote}>{p.quote}</p>
+                  {p.behaviors && (
+                    <>
+                      <p className={styles.personaLabel}>Behaviors &amp; habits</p>
+                      <ul className={styles.behaviors}>
+                        {p.behaviors.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                   <ul className={styles.traits}>
                     {p.traits.map((t) => (
-                      <li key={t}>{t}</li>
+                      <li
+                        key={t}
+                        className={t === p.core ? styles.traitCore : undefined}
+                        title={t === p.core ? "Core trait" : undefined}
+                      >
+                        {t}
+                      </li>
                     ))}
                   </ul>
                 </article>
@@ -496,7 +528,7 @@ export default function ApexStory() {
         </section>
 
         {/* 6. User flow (horizontal pan) */}
-        <section className={styles.section}>
+        <section className={`${styles.section} ${styles.sectionLead}`}>
           <div className={styles.wrap}>
             <p className={styles.kicker}>User flow</p>
             <h2 className={styles.h2} data-split>
@@ -527,6 +559,12 @@ export default function ApexStory() {
 
         <section className={styles.section}>
           <div className={styles.wrap}>
+            <p className={styles.kicker}>Ideal user journey</p>
+            <h3 className={styles.h3}>Six steps from first visit to a live API call</h3>
+            <p className={styles.prose}>
+              The ideal user journey, the path every screen was designed to
+              shorten. Step 4 is where all three personas have to succeed.
+            </p>
             <ol className={styles.flow} data-anim="steps">
               {flowSteps.map((step, i) => (
                 <li
@@ -551,7 +589,7 @@ export default function ApexStory() {
             <div className={styles.flowIterations}>
               {flowIterations.map((shot) => (
                 <figure key={shot.src} className={styles.figure} data-fade>
-                  <Image
+                  <ZoomableImage
                     src={shot.src}
                     alt={shot.alt}
                     width={shot.width}

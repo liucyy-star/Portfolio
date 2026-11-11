@@ -122,6 +122,14 @@
   font-size: clamp(3rem, 10vw, 8rem);
   max-width: none;
 }
+.h3 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+}
 
 .prose {
   font-size: 1.1rem;
@@ -149,8 +157,13 @@
 
 /* ---------- sections ---------- */
 
+/* same rhythm on every case study page (see --case-section-y in globals.css) */
 .section {
-  padding: 16vh 0;
+  padding: var(--case-section-y) 0;
+}
+/* an intro whose visual follows in the next section: keep them together */
+.sectionLead {
+  padding-bottom: 0;
 }
 
 @media (min-width: 900px) {
@@ -410,22 +423,57 @@
 .personaIndex {
   color: var(--muted);
 }
+.personaHead {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0 18px;
+}
+.personaPhoto {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line);
+}
 .personaName {
   font-family: var(--font-display), sans-serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 600;
-  margin: 18px 0 6px;
+  margin: 0 0 4px;
 }
 .personaMeta {
   color: var(--muted);
   font-size: 0.9rem;
-  margin: 0 0 22px;
+  margin: 0;
 }
 .quote {
   font-family: var(--font-display), sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   line-height: 1.35;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
+}
+.personaLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.behaviors {
+  margin: 0 0 18px;
+  padding-left: 18px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.behaviors li + li {
+  margin-top: 4px;
+}
+.behaviors li::marker {
+  color: var(--accent);
 }
 .traits {
   list-style: none;
@@ -442,11 +490,18 @@
   border: 1px solid var(--line);
   color: var(--muted);
 }
+/* the trait that sums the persona up */
+.traits .traitCore {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
 
 /* ---------- user flow pan ---------- */
 
 .panSection {
-  padding: 4vh 0 10vh;
+  padding: 32px 0 calc(var(--case-section-y) * 0.5);
 }
 .panViewport {
   overflow-x: auto;
@@ -465,18 +520,19 @@
   border: 1px solid var(--line);
 }
 @media (min-width: 900px) {
+  /* pinned: image sits near the top, right under the intro, not centered */
   .root[data-motion="on"] .panSection {
     height: calc(100vh - var(--nav-h, 0px));
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0;
+    justify-content: flex-start;
+    padding: 32px 0 0;
   }
   .root[data-motion="on"] .panViewport {
     overflow: hidden;
   }
   .root[data-motion="on"] .panImg {
-    height: 62vh;
+    height: 68vh;
   }
 }
 
@@ -593,7 +649,7 @@
 }
 
 .evoSection {
-  padding: 0 0 12vh;
+  padding: 0 0 var(--case-section-y);
 }
 .evoStack {
   display: grid;

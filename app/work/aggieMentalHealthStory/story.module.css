@@ -145,8 +145,9 @@
 
 /* ---------- sections ---------- */
 
+/* same rhythm on every case study page (see --case-section-y in globals.css) */
 .section {
-  padding: 16vh 0;
+  padding: var(--case-section-y) 0;
 }
 
 @media (min-width: 900px) {
