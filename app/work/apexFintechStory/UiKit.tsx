@@ -12,13 +12,12 @@ import {
   kitAccents,
   credentials,
   stats,
-  accountTabs,
-  accountRows,
+  activityTables,
 } from "./storyContent";
-import type { KitSwatch, NavIcon, QuickStartVariant } from "./storyContent";
+import type { KitSwatch, QuickStartVariant } from "./storyContent";
 
 // Small line icons, drawn to match the ones in the kit.
-const icons: Record<NavIcon | "rocket" | "collapse" | "expand" | "arrow" | "sun" | "moon" | "key" | "bulb", ReactElement> = {
+const icons = {
   portal: (
     <svg viewBox="0 0 24 24">
       <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
@@ -85,9 +84,42 @@ const icons: Record<NavIcon | "rocket" | "collapse" | "expand" | "arrow" | "sun"
       <path d="M4 12h15M13 6l6 6-6 6" />
     </svg>
   ),
-};
+  help: (
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01" />
+    </svg>
+  ),
+  user: (
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="10" r="3" />
+      <path d="M6.5 18.5a6.5 6.5 0 0 1 11 0" />
+    </svg>
+  ),
+  doc: (
+    <svg viewBox="0 0 24 24">
+      <path d="M7 3h7l4 4v14H7z" />
+      <path d="M14 3v4h4M9.5 14l2 2 3.5-4" />
+    </svg>
+  ),
+  tools: (
+    <svg viewBox="0 0 24 24">
+      <path d="M14.5 6.5a3.5 3.5 0 0 0 4.6 4.1L20 11.5l-8.5 8.5-3-3L17 8.5" />
+      <path d="M4 6l2-2 4 4-2 2zM8 10l6.5 6.5M15 15l4 4" />
+    </svg>
+  ),
+  chart: (
+    <svg viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="12" rx="1.5" />
+      <path d="M7 13l3-3 2.5 2 4-4.5M9 20h6M12 16v4" />
+    </svg>
+  ),
+} satisfies Record<string, ReactElement>;
 
-function Icon({ name }: { name: keyof typeof icons }) {
+export type IconName = keyof typeof icons;
+
+export function Icon({ name }: { name: IconName }) {
   return (
     <span className={styles.kitIcon} aria-hidden="true">
       {icons[name]}
@@ -95,7 +127,7 @@ function Icon({ name }: { name: keyof typeof icons }) {
   );
 }
 
-function Wordmark({ small = false }: { small?: boolean }) {
+export function Wordmark({ small = false }: { small?: boolean }) {
   return (
     <span className={`${styles.kitWordmark} ${small ? styles.kitWordmarkSmall : ""}`}>
       <span className={styles.kitWordmarkApex}>APEX</span>
@@ -124,7 +156,7 @@ function Scale({ name, swatches }: { name: string; swatches: KitSwatch[] }) {
   );
 }
 
-function QuickStart({ variant }: { variant: QuickStartVariant }) {
+export function QuickStart({ variant }: { variant: QuickStartVariant }) {
   return (
     <div className={styles.kitQs}>
       <span className={styles.kitQsBadge}>
@@ -223,9 +255,9 @@ function SideNav() {
   );
 }
 
-function Footer() {
+export function Footer({ className = "" }: { className?: string }) {
   return (
-    <div className={styles.kitFooter} data-anim="kit-piece">
+    <div className={`${styles.kitFooter} ${className}`}>
       <div className={styles.kitFooterTop}>
         <Wordmark />
         <div className={styles.kitFooterActions}>
@@ -273,89 +305,107 @@ function Accents() {
 }
 
 // The light/dark switch from the Portal header, driving the two cards beside it.
+export function ThemeToggle({ dark, onChange }: { dark: boolean; onChange: (dark: boolean) => void }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={dark}
+      aria-label="Dark mode"
+      className={styles.kitToggle}
+      onClick={() => onChange(!dark)}
+    >
+      <span className={styles.kitToggleKnob}>
+        <Icon name={dark ? "moon" : "sun"} />
+      </span>
+    </button>
+  );
+}
+
 function ThemeCards() {
   const [dark, setDark] = useState(false);
-  const [tab, setTab] = useState(0);
 
   return (
-    <div className={`${styles.kitTheme} ${dark ? styles.kitThemeDark : ""}`}>
+    <div className={`${styles.kitVars} ${dark ? styles.kitVarsDark : ""} ${styles.kitTheme}`}>
       <div className={styles.kitThemeBar}>
-        <button
-          type="button"
-          role="switch"
-          aria-checked={dark}
-          aria-label="Dark mode"
-          className={styles.kitToggle}
-          onClick={() => setDark(!dark)}
-        >
-          <span className={styles.kitToggleKnob}>
-            <Icon name={dark ? "moon" : "sun"} />
-          </span>
-        </button>
+        <ThemeToggle dark={dark} onChange={setDark} />
         <span className={styles.kitThemeLabel}>{dark ? "Dark mode" : "Light mode"}</span>
       </div>
 
       <div className={styles.kitThemeGrid}>
-        <div className={styles.kitCred}>
-          <div className={styles.kitCredHead}>
-            <h4 className={styles.kitCredTitle}>
-              <Icon name="key" /> Credentials
-            </h4>
-            <span className={styles.kitPill}>29 days left of trial</span>
-          </div>
-          {credentials.map((c) => (
-            <div key={c.label} className={styles.kitCredRow}>
-              <span className={styles.kitCredLabel}>{c.label}:</span>
-              <span>{c.value}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className={styles.kitTable}>
-          <h4 className={styles.kitTableTitle}>View Accounts &amp; Activities</h4>
-          <div className={styles.kitTabs} role="tablist">
-            {accountTabs.map((t, i) => (
-              <button
-                key={t}
-                type="button"
-                role="tab"
-                aria-selected={tab === i}
-                className={`${styles.kitTab} ${tab === i ? styles.kitTabOn : ""}`}
-                onClick={() => setTab(i)}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Account ID</th>
-                <th>Equity</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {accountRows.map((r, i) => (
-                <tr key={i}>
-                  <td>{r.name}</td>
-                  <td>{r.id}</td>
-                  <td>{r.equity}</td>
-                  <td>{r.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <CredentialsCard />
+        <ActivityCard />
       </div>
     </div>
   );
 }
 
-function Overview() {
+// Colors come from the --k-* variables set by .kitVars / .kitVarsDark on an ancestor.
+export function CredentialsCard({ className = "" }: { className?: string }) {
   return (
-    <div className={styles.kitStats} data-anim="kit-piece">
+    <div className={`${styles.kitCred} ${className}`}>
+      <div className={styles.kitCredHead}>
+        <h4 className={styles.kitCredTitle}>
+          <Icon name="key" /> Credentials
+        </h4>
+        <span className={styles.kitPill}>29 days left of trial</span>
+      </div>
+      {credentials.map((c) => (
+        <div key={c.label} className={styles.kitCredRow}>
+          <span className={styles.kitCredLabel}>{c.label}:</span>
+          <span>{c.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function ActivityCard({ className = "" }: { className?: string }) {
+  const [tab, setTab] = useState(0);
+  const table = activityTables[tab];
+
+  return (
+    <div className={`${styles.kitTable} ${className}`}>
+      <h4 className={styles.kitTableTitle}>View Accounts &amp; Activities</h4>
+      <div className={styles.kitTabs} role="tablist">
+        {activityTables.map((t, i) => (
+          <button
+            key={t.tab}
+            type="button"
+            role="tab"
+            aria-selected={tab === i}
+            className={`${styles.kitTab} ${tab === i ? styles.kitTabOn : ""}`}
+            onClick={() => setTab(i)}
+          >
+            {t.tab}
+          </button>
+        ))}
+      </div>
+      <table>
+        <thead>
+          <tr>
+            {table.columns.map((c) => (
+              <th key={c}>{c}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, k) => (
+                <td key={k}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function Overview({ className = "" }: { className?: string }) {
+  return (
+    <div className={`${styles.kitStats} ${className}`}>
       {stats.map((s) => (
         <div key={s.label}>
           <span className={styles.kitStatLabel}>{s.label}</span>
@@ -367,9 +417,9 @@ function Overview() {
   );
 }
 
-function Banner() {
+export function Banner({ className = "" }: { className?: string }) {
   return (
-    <div className={styles.kitBanner} data-anim="kit-piece">
+    <div className={`${styles.kitBanner} ${className}`}>
       <span className={styles.kitBannerBadge}>
         <Icon name="bulb" />
       </span>
@@ -400,11 +450,11 @@ export default function UiKit() {
       </div>
 
       <div className={`${styles.kitBlock} ${styles.kitStack}`}>
-        <div>
+        <div data-anim="kit-piece">
           <p className={styles.kitLabel}>Overview stats</p>
           <Overview />
         </div>
-        <div>
+        <div data-anim="kit-piece">
           <p className={styles.kitLabel}>Tutorial banner</p>
           <Banner />
         </div>
@@ -427,7 +477,7 @@ export default function UiKit() {
           <p className={styles.kitLabel}>Side navigation (try it)</p>
           <SideNav />
         </div>
-        <div>
+        <div data-anim="kit-piece">
           <p className={styles.kitLabel}>Footer</p>
           <Footer />
         </div>

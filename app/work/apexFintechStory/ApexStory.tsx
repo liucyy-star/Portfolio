@@ -13,7 +13,6 @@ import styles from "./story.module.css";
 import { apexFintech as study } from "@/lib/caseStudies/apexFintech";
 import {
   heroShot,
-  finalShots,
   idealMilestones,
   competitorColumns,
   competitors,
@@ -22,6 +21,7 @@ import {
   evolution,
 } from "./storyContent";
 import UiKit from "./UiKit";
+import LivePortal from "./LivePortal";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -186,14 +186,13 @@ export default function ApexStory() {
         });
       });
 
-      // Final design: the light and dark screens rise in one after the other.
-      gsap.from($('[data-anim="final"]'), {
+      // Final design: the live Portal window rises into place.
+      gsap.from(one('[data-anim="final"]'), {
         y: 80,
         opacity: 0,
-        stagger: 0.18,
         duration: 1,
         ease: "power3.out",
-        scrollTrigger: { trigger: one('[data-anim="finalGrid"]'), start: "top 80%" },
+        scrollTrigger: { trigger: one('[data-anim="final"]'), start: "top 85%" },
       });
 
       const mm = gsap.matchMedia();
@@ -648,23 +647,13 @@ export default function ApexStory() {
               {study.finalDesign.body}
             </p>
 
-            <div className={styles.finalGrid} data-anim="finalGrid">
-              {finalShots.map((shot) => (
-                <figure key={shot.src} className={styles.finalShot} data-anim="final">
-                  <div className={styles.finalFrame}>
-                    <Image
-                      src={shot.src}
-                      alt={shot.alt}
-                      width={shot.width}
-                      height={shot.height}
-                      unoptimized
-                      className={styles.finalImg}
-                    />
-                  </div>
-                  <figcaption className={styles.caption}>{shot.label}</figcaption>
-                </figure>
-              ))}
+            <div data-anim="final">
+              <LivePortal />
             </div>
+            <p className={styles.caption}>
+              The final Portal, coded. Scroll inside the window, flip the switch for dark mode,
+              and try the tabs and sidebar links.
+            </p>
             {study.finalDesign.prototypeUrl && (
               <a
                 className={styles.protoLink}
