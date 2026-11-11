@@ -8,9 +8,8 @@ import { first_name, last_name } from "@/lib/site";
 const LINKS = [
   { href: "/#work", label: "Work" },
   { href: "/about", label: "About" },
-  // Hidden until these pages are ready to show:
-  // { href: "/graphic-design", label: "Graphic Design" },
-  // { href: "/photography", label: "Photography" },
+  { href: "/graphic-design", label: "Graphic Design" },
+  { href: "/photography", label: "Photography" },
   { href: "/#contact", label: "Contact" },
 ];
 
