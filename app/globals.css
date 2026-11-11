@@ -574,11 +574,24 @@ body:has([data-nav-theme="dark"]) {
   margin: 14px 0 6px;
   font-weight: 600;
 }
+/* "Read case study" sits on the tag row, so the title and one-liner
+   below it can run the full width of the card */
+.card-top {
+  position: relative;
+}
+.card-top > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.card-top > .toggle-hint {
+  position: absolute;
+  top: 3px;
+  right: 0;
+}
 .card .one-liner {
   color: var(--muted);
   font-size: 1rem;
   margin: 0;
-  max-width: 520px;
 }
 .card-meta {
   display: flex;

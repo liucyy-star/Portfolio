@@ -4,9 +4,9 @@ export const apexFintech: CaseStudy = {
   slug: "apexFintechStory",
   accent: "1",
   bouquet: ["card", "chart", "coin", "code", "api", "lock"],
-  thumbnail: { src: "/case-studies/apex/dashboard-mid2.png", alt: "Apex sandbox dashboard with Quick Start, Developer Portal and Credentials cards", position: "top left" },
+  thumbnail: { src: "/case-studies/apex/final-hero.webp", alt: "Final Apex sandbox Portal in dark mode: credentials, Quick Start and account overview", position: "top left" },
   tag: "Fintech",
-  title: "Apex Fintech — Sandbox MVP",
+  title: "Apex Fintech Solutions — Sandbox MVP",
   oneLiner:
     "Designed Apex's first self-serve sandbox so prospective clients could try its APIs before talking to sales.",
   role: "UX Design Intern",
@@ -14,7 +14,7 @@ export const apexFintech: CaseStudy = {
   tools: "Figma",
   team: "PM, Product Devs, Chief Engineer",
 
-  heroTitle: "Designing the first sandbox environment for Apex Fintech",
+  heroTitle: "Designing the first sandbox environment for Apex Fintech Solutions",
   heroSub:
     "A self-serve trial environment that let prospective clients evaluate Apex’s investment APIs before ever signing a contract, built from research through final UI in ten weeks.",
 
