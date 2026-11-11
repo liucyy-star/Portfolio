@@ -312,6 +312,7 @@ export default function ApexStory() {
     <div
       ref={root}
       className={styles.root}
+      data-nav-theme="dark"
       data-motion={motion ? "on" : "off"}
     >
       <div className={styles.progress} data-anim="progress" aria-hidden="true" />

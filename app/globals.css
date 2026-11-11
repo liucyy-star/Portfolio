@@ -100,6 +100,20 @@ a {
   mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
 }
+/* Dark pages (any element with data-nav-theme="dark") get a dark tint and
+   light text instead of the cream one. */
+body:has([data-nav-theme="dark"]) .site-nav,
+body:has([data-nav-theme="dark"]) .menu-overlay {
+  --bg: #0b0d13;
+  --ink: #eef1f7;
+  --muted: #98a1b3;
+  --line: rgba(255, 255, 255, 0.1);
+  color: var(--ink);
+}
+/* the nav sits above the page content, so the body behind it must be dark too */
+body:has([data-nav-theme="dark"]) {
+  background: #0b0d13;
+}
 /* soft cream halo keeps the name and links legible over busy images */
 .site-nav .logo,
 .site-nav .nav-links a {
