@@ -12,7 +12,7 @@
   color: var(--ink);
   font-family: var(--font-body), sans-serif;
 }
-.wrap { max-width: 960px; margin: 0 auto; padding: 0 6vw; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 6vw; }
 
 /* hero: teal + gold glow instead of lavender */
 .hero {
@@ -26,13 +26,13 @@
 /* chunky, friendly headings like the site */
 .heroTitle { color: var(--navy); font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; margin: 0 0 16px; }
 
-.heroSub { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 0; }
+.heroSub { font-size: 1.15rem; color: var(--muted); max-width: 720px; margin: 0; }
 .meta { display: flex; flex-wrap: wrap; gap: 32px; margin: 40px 0 0; }
 .metaTerm { font-family: var(--font-mono), monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lav); }
 .metaValue { margin: 4px 0 0; font-weight: 600; color: var(--navy); }
 
 /* sidebar layout */
-.layout { display: grid; grid-template-columns: 180px 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 0 4vw; }
+.layout { display: grid; grid-template-columns: 180px 1fr; gap: 48px; max-width: 1320px; margin: 0 auto; padding: 0 4vw; }
 .layout .wrap { padding: 0; } /* the layout already adds side padding */
 .sidebar { position: sticky; top: calc(var(--nav-h) + 32px); align-self: start; padding-top: 9vh; margin-bottom: 80px; }
 .tocList { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; border-left: 2px solid var(--pale); }
@@ -83,7 +83,7 @@
 /* labels in bold body font, not monospace */
 .kicker { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lav); margin-bottom: 10px; }
 .h2 { color: var(--navy); font-weight: 800; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.2; margin: 0 0 20px; }
-.prose { font-size: 1.05rem; line-height: 1.7; max-width: 680px; margin: 0 0 16px; }
+.prose { font-size: 1.05rem; line-height: 1.7; max-width: 760px; margin: 0 0 16px; }
 .lead { font-size: 1.25rem; color: var(--navy); }
 /* callouts get a teal stripe on the left */
 .callout { background: var(--blue); color: var(--navy); font-weight: 600; font-size: 1.2rem; padding: 24px 28px; border-radius: 10px; border-left: 6px solid var(--teal); margin: 24px 0; }
