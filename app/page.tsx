@@ -3,6 +3,7 @@ import RotatingWord from "@/components/RotatingWord";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import IntroLoader from "@/components/IntroLoader";
 import Reveal from "@/components/Reveal";
+import DeskHero from "@/components/DeskHero";
 import { caseStudies } from "@/lib/caseStudies";
 import { first_name, last_name, email } from "@/lib/site";
 
@@ -14,16 +15,8 @@ export default function Home() {
       <CursorBlob />
 
 
-      <section className="hero">
-        {/* overlapping translucent shapes, echoing the wordmark */}
-        <div className="hero-shapes" aria-hidden="true">
-          <span className="shape s-blue" />
-          <span className="shape s-yellow" />
-          <span className="shape s-orange" />
-          <span className="shape s-pink" />
-          <span className="shape s-green" />
-          <span className="shape s-teal" />
-        </div>
+      <section className="hero hero-desk">
+        <div className="hero-copy">
         <Reveal delay={0}>
           <div className="eyebrow">
             <span className="dot-live" />
@@ -34,7 +27,10 @@ export default function Home() {
           <h1>
             Hi, I&apos;m {first_name}.
             <br />
-            I design <RotatingWord />.
+            I design{" "}
+            <span className="rotator-line">
+              <RotatingWord />.
+            </span>
           </h1>
         </Reveal>
         <Reveal delay={200}>
@@ -55,6 +51,8 @@ export default function Home() {
             </a>
           </div>
         </Reveal>
+        </div>
+        <DeskHero />
       </section>
 
       <Reveal id="work" className="section-head" delay={0}>

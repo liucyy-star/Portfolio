@@ -27,16 +27,16 @@ export default function CursorBlob() {
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      const card = (e.target as HTMLElement).closest<HTMLElement>(".card");
+      const card = (e.target as Element).closest<HTMLElement>(".card, .desk-obj");
       if (!card) return;
-      const accent = card.dataset.accent ?? "1";
+      const accent = card.dataset.accent ?? card.dataset.deskAccent ?? "1";
       blob.style.background = ACCENT_COLORS[accent] ?? DEFAULT_COLOR;
       blob.style.width = "36px";
       blob.style.height = "36px";
     };
 
     const handleMouseOut = (e: MouseEvent) => {
-      const card = (e.target as HTMLElement).closest<HTMLElement>(".card");
+      const card = (e.target as Element).closest<HTMLElement>(".card, .desk-obj");
       if (!card) return;
       blob.style.background = DEFAULT_COLOR;
       blob.style.width = "22px";

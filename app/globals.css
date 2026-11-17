@@ -300,6 +300,30 @@ body:has([data-nav-theme="dark"]) {
   max-width: 1000px;
 }
 
+/* homepage hero: copy on the left, the clickable desk on the right;
+   stacks (copy first) on narrower screens */
+.hero-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 4vw;
+}
+/* the copy column is narrower, so the headline steps down a size
+   (.hero.hero-desk beats the plain .hero h1 rule further down) */
+.hero.hero-desk h1 {
+  font-size: clamp(2rem, 4.2vw, 3.8rem);
+}
+/* the rotating phrase gets its own line and keeps its period,
+   so the headline doesn't jump as the words change */
+.rotator-line {
+  display: block;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .hero-desk { grid-template-columns: 1fr; }
+  .hero.hero-desk h1 { font-size: clamp(2rem, 8vw, 3.4rem); }
+}
+
 /* hero shapes: translucent circles and slices that overlap like the wordmark */
 .hero-shapes {
   position: absolute;
