@@ -184,7 +184,7 @@
 /* ---------- hero ---------- */
 
 .hero {
-  padding: 20vh 0 10vh;
+  padding: 28px 0 var(--case-section-y);
 }
 .heroTitle {
   font-family: var(--font-display), sans-serif;
@@ -221,9 +221,9 @@
 }
 
 .heroShotWrap {
-  width: min(1180px, 92vw);
-  margin: 12vh auto 0;
-  perspective: 1400px;
+  /* image leads the page: as wide as possible while still fitting on screen */
+  width: min(1180px, 92vw, calc((100vh - var(--nav-h, 0px) - 64px) * 1.49));
+  margin: 0 auto 8vh;
 }
 .heroShot {
   transform-origin: 50% 0%;

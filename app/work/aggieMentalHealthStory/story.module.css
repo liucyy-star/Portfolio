@@ -166,7 +166,7 @@
 
 .hero {
   position: relative;
-  padding: 18vh 0 16vh;
+  padding: 32px 0 16vh;
   background: var(--sage);
   color: #fff;
   overflow: hidden;
@@ -506,8 +506,10 @@
 
 /* ---------- poster fan ---------- */
 
-.posterSection {
-  padding: 0 0 12vh;
+/* final posters, leading the cover */
+.heroPosters {
+  position: relative; /* above the floating doodles */
+  padding: 0 0 8vh;
 }
 .posterStage {
   display: grid;
@@ -521,7 +523,7 @@
   margin: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 30px 60px -30px rgba(23, 38, 30, 0.45);
+  box-shadow: 0 30px 60px -30px rgba(23, 38, 30, 0.55);
   will-change: transform;
 }
 .poster img {
@@ -533,20 +535,21 @@
   .posterStage {
     grid-template-columns: repeat(4, 1fr);
   }
-  .root[data-motion="on"] .posterSection {
-    height: calc(100vh - var(--nav-h, 0px));
+  /* motion on: posters stack in one cell, then fan out (see AggieStory) */
+  .root[data-motion="on"] .heroPosters {
+    height: calc((100vh - var(--nav-h, 0px)) * 0.8);
     display: grid;
     place-items: center;
     padding: 0;
+    margin-bottom: 6vh;
   }
   .root[data-motion="on"] .posterStage {
-    display: grid;
     grid-template-columns: 1fr;
     place-items: center;
   }
   .root[data-motion="on"] .poster {
     grid-area: 1 / 1;
-    width: min(21vw, calc((100vh - var(--nav-h, 0px)) * 0.55));
+    width: min(19vw, calc((100vh - var(--nav-h, 0px)) * 0.46));
   }
 }
 

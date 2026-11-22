@@ -13,7 +13,7 @@
 
 /* hero */
 .hero {
-  padding: 14vh 0 8vh;
+  padding: 28px 0 8vh; /* the hero image sits first, right under the nav */
   background:
     radial-gradient(circle at 100% 0%, rgba(135, 132, 186, 0.35), transparent 40%),
     radial-gradient(circle at 0% 100%, rgba(176, 224, 244, 0.5), transparent 40%);

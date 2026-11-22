@@ -5,6 +5,7 @@ import ReadingProgress from "@/components/readingProgress";
 import Link from "next/link";
 import { caseStudies } from "@/lib/caseStudies";
 import NextProject from "@/components/NextProject";
+import hero from "./CaseStudyHero.module.css";
 
 export default function CaseStudyTemplate({
   study,
@@ -85,6 +86,35 @@ const toc = [
     <div className={`${styles.page} ${fontClass}`}>
       <ReadingProgress className={styles.progress} doneClassName={styles.star}/>
       <header className={styles.hero}>
+        {/* the hero image comes first; the title sits underneath */}
+        <div className={hero.media}>
+          {study.heroImage ? (
+            <Image
+              src={study.heroImage.src}
+              alt={study.heroImage.alt}
+              width={study.heroImage.width}
+              height={study.heroImage.height}
+              sizes="(min-width: 1200px) 1120px, 92vw"
+              priority
+              className={hero.img}
+            />
+          ) : study.thumbnail ? (
+            <div className={hero.frame}>
+              <Image
+                src={study.thumbnail.src}
+                alt={study.thumbnail.alt}
+                fill
+                sizes="(min-width: 1200px) 1120px, 92vw"
+                priority
+                style={{ objectFit: "cover", objectPosition: study.thumbnail.position ?? "center" }}
+              />
+            </div>
+          ) : (
+            <div className={`${hero.frame} ${hero.placeholder}`} aria-hidden="true">
+              <span>image coming soon</span>
+            </div>
+          )}
+        </div>
         <div className={styles.wrap}>
           <div className={styles.kicker}>{study.tag}</div>
           <h1 className={styles.heroTitle}>{study.heroTitle}</h1>

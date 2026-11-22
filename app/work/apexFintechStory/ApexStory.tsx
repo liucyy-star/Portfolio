@@ -126,24 +126,15 @@ export default function ApexStory() {
         });
       });
 
-      // Hero screenshot tilts back flat as you scroll into it.
-      const heroShotEl = one('[data-anim="hero-shot"]');
-      gsap.fromTo(
-        heroShotEl,
-        { rotateX: 24, scale: 0.86, yPercent: 4 },
-        {
-          rotateX: 0,
-          scale: 1,
-          yPercent: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroShotEl,
-            start: "top 95%",
-            end: "center 55%",
-            scrub: true,
-          },
-        }
-      );
+      // Hero screenshot: the first thing on the page, so it eases in on load.
+      gsap.from(one('[data-anim="hero-shot"]'), {
+        y: 40,
+        scale: 0.96,
+        opacity: 0,
+        duration: 1.1,
+        ease: "power3.out",
+        delay: 0.1,
+      });
 
       // User-flow steps slide in one after another.
       gsap.from($('[data-anim="step"]'), {
@@ -329,6 +320,19 @@ export default function ApexStory() {
 
       {/* 1. Cover */}
       <header className={styles.hero}>
+        {/* the final design comes first; the title sits underneath */}
+        <div className={styles.heroShotWrap}>
+          <div className={styles.heroShot} data-anim="hero-shot">
+            <Image
+              src={heroShot.src}
+              alt={heroShot.alt}
+              width={heroShot.width}
+              height={heroShot.height}
+              sizes="(min-width: 1200px) 1100px, 92vw"
+              priority
+            />
+          </div>
+        </div>
         <div className={styles.wrap}>
           <p className={styles.kicker} data-fade>
             Apex Fintech Solutions · UX case study
@@ -347,18 +351,6 @@ export default function ApexStory() {
               </div>
             ))}
           </dl>
-        </div>
-        <div className={styles.heroShotWrap}>
-          <div className={styles.heroShot} data-anim="hero-shot">
-            <Image
-              src={heroShot.src}
-              alt={heroShot.alt}
-              width={heroShot.width}
-              height={heroShot.height}
-              sizes="(min-width: 1200px) 1100px, 92vw"
-              priority
-            />
-          </div>
         </div>
       </header>
 

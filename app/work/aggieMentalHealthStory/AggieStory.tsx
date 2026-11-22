@@ -257,29 +257,21 @@ export default function AggieStory() {
             .to(shots[i - 1], { scale: 0.9, opacity: 0.35, duration: 1 }, "<");
         });
 
-        // Posters: a neat stack fans out across the screen.
+        // Posters: the cover opens on a neat stack that fans out on load.
         const cards = $('[data-anim="poster"]');
         const mid = (cards.length - 1) / 2;
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: one('[data-pin="posters"]'),
-              start: () => `top ${navOffset()}px`,
-              end: "+=140%",
-              pin: true,
-              scrub: 0.6,
-            },
-          })
-          .fromTo(
-            cards,
-            { xPercent: 0, yPercent: 8, rotate: (i) => (i - mid) * 2.5 },
-            {
-              xPercent: (i) => (i - mid) * 108,
-              yPercent: (i) => Math.abs(i - mid) * 6,
-              rotate: (i) => (i - mid) * 5,
-              ease: "power2.inOut",
-            }
-          );
+        gsap.fromTo(
+          cards,
+          { xPercent: 0, yPercent: 8, rotate: (i) => (i - mid) * 2.5 },
+          {
+            xPercent: (i) => (i - mid) * 108,
+            yPercent: (i) => Math.abs(i - mid) * 6,
+            rotate: (i) => (i - mid) * 5,
+            duration: 1.4,
+            delay: 0.35,
+            ease: "power3.inOut",
+          }
+        );
 
         // Applications: the wider system pans sideways while the page is pinned.
         const track = one('[data-anim="pan-track"]');
@@ -353,6 +345,23 @@ export default function AggieStory() {
               }}
             />
           ))}
+        </div>
+        {/* the final posters lead the page; the wordmark sits underneath */}
+        <div className={styles.heroPosters}>
+          <div className={styles.posterStage}>
+            {posters.map((p) => (
+              <figure key={p.src} className={styles.poster} data-anim="poster">
+                <Image
+                  src={p.src}
+                  alt={p.alt}
+                  width={p.width}
+                  height={p.height}
+                  sizes="(min-width: 900px) 24vw, 46vw"
+                  priority
+                />
+              </figure>
+            ))}
+          </div>
         </div>
         <div className={styles.wrap}>
           <p className={styles.kicker} data-fade>
@@ -587,22 +596,6 @@ export default function AggieStory() {
               a doodle or two, and a sage band with the call to action and QR
               code.
             </p>
-          </div>
-        </section>
-
-        <section className={styles.posterSection} data-pin="posters">
-          <div className={styles.posterStage}>
-            {posters.map((p) => (
-              <figure key={p.src} className={styles.poster} data-anim="poster">
-                <Image
-                  src={p.src}
-                  alt={p.alt}
-                  width={p.width}
-                  height={p.height}
-                  sizes="(min-width: 900px) 24vw, 46vw"
-                />
-              </figure>
-            ))}
           </div>
         </section>
 
