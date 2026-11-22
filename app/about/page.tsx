@@ -44,9 +44,9 @@ export default function AboutMe() {
             <span className={styles.wave} aria-hidden="true">👋</span>
           </h1>
           <p className={styles.lead}>
-            I&apos;m a UX designer at Deloitte, where I work on BenefitsCal —
-            the portal Californians use to apply for food, cash, and health
-            benefits. I love turning dense rules into steps people can actually
+            I&apos;m a UX designer at Deloitte, where I work on a statewide
+            benefits portal residents use to apply for and manage food, cash,
+            and health benefits. I love turning dense rules into steps people can actually
             finish.
           </p>
           <p className={styles.body}>

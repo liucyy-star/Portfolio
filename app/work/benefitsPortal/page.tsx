@@ -1,14 +1,14 @@
 import CaseStudyTemplate from "@/components/CaseStudyTemplate";
-import { benefitsCal } from "@/lib/caseStudies/benefitsCal";
+import { benefitsPortal } from "@/lib/caseStudies/benefitsPortal";
 import styles from "./page.module.css";
 import { nunito, sourceSans } from "./fonts";
 
-export const metadata = { title: benefitsCal.title, description: benefitsCal.oneLiner };
+export const metadata = { title: benefitsPortal.title, description: benefitsPortal.oneLiner };
 
 export default function Page() {
   return (
     <CaseStudyTemplate
-      study={benefitsCal}
+      study={benefitsPortal}
       styles={styles}
       fontClass={`${nunito.variable} ${sourceSans.variable}`}
     />

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, type MouseEvent, type ReactNode } from "react";
 import { apexFintech } from "@/lib/caseStudies/apexFintech";
-import { benefitsCal } from "@/lib/caseStudies/benefitsCal";
+import { benefitsPortal } from "@/lib/caseStudies/benefitsPortal";
 import { aggieMentalHealth } from "@/lib/caseStudies/aggieMentalHealth";
 import styles from "./DeskHero.module.css";
 
@@ -29,7 +29,7 @@ const ACCENT_HEX: Record<string, string> = { "1": "#5a7bff", "2": "#0b8f94", "3"
 
 const OBJECTS: Obj[] = [
   { id: "apex", href: `/work/${apexFintech.slug}`, label: apexFintech.title, kind: apexFintech.tag, accent: apexFintech.accent, tag: "Fintech", at: [301, 100] },
-  { id: "benefits", href: `/work/${benefitsCal.slug}`, label: benefitsCal.title, kind: benefitsCal.tag, accent: benefitsCal.accent, tag: "Civic tech", at: [517, 170] },
+  { id: "benefits", href: `/work/${benefitsPortal.slug}`, label: benefitsPortal.title, kind: benefitsPortal.tag, accent: benefitsPortal.accent, tag: "Civic tech", at: [517, 170] },
   { id: "aggie", href: `/work/${aggieMentalHealth.slug}`, label: aggieMentalHealth.title, kind: aggieMentalHealth.tag, accent: aggieMentalHealth.accent, tag: "Brand campaign", at: [111, 22] },
   { id: "sketch", href: "/graphic-design", label: "Graphic design", kind: "Sketchbook", tag: "Graphics", at: [178, 268], quiet: true },
   { id: "camera", href: "/photography", label: "Photography", kind: "Camera roll", tag: "Photos", at: [449, 244], quiet: true },
@@ -154,7 +154,7 @@ export default function DeskHero() {
           <circle cx="469" cy="266" r="2.5" fill="#fff3e4" />
         </>)}
 
-        {/* ── phone on a stand → BenefitsCal ── */}
+        {/* ── phone on a stand → benefits portal ── */}
         {thing("benefits", <>
           <path d="M490 302 L540 302 L532 290 L498 290 Z" fill="#b8bccb" className={styles.ink} />
           <g transform="rotate(8 515 240)">

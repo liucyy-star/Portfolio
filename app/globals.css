@@ -525,7 +525,7 @@ body:has([data-nav-theme="dark"]) {
   box-shadow: 0 18px 34px -18px rgba(23, 21, 34, 0.35);
 }
 /* card colors come from each case study page's own palette:
-   1 = Apex (periwinkle + amber), 2 = BenefitsCal (teal + coral),
+   1 = Apex (periwinkle + amber), 2 = Benefits portal (teal + coral),
    3 = Aggie Mental Health (sage + UC Davis gold) */
 .card[data-accent="1"],
 .card-link[data-accent="1"] {

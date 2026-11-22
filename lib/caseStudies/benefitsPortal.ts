@@ -1,31 +1,31 @@
 import type { CaseStudy } from "./types";
 
-export const benefitsCal: CaseStudy = {
-  slug: "benefitsCal", // must match the folder name in app/work
+export const benefitsPortal: CaseStudy = {
+  slug: "benefitsPortal", // must match the folder name in app/work
   accent: "2",         // card color: "1", "2" or "3"
   bouquet: ["doc", "check", "building", "form", "heart", "pencil"],
   tag: "Civic tech: Eligibility",
-  title: "BenefitsCal — Medi-Cal renewal under new policy",
-  oneLiner: "Turned a brand-new, fast-changing federal policy into a Medi-Cal renewal flow Californians could actually get through online.",
+  title: "Statewide benefits portal — Medicaid renewal under new policy",
+  oneLiner: "Turned a brand-new, fast-changing federal policy into a Medicaid renewal flow residents could actually get through online.",
   role: "UX Designer",
   timeline: "Sept 2024 - Present",
   tools: "Figma",
-  team: "State of California, Project Managers, Engineers",
+  team: "State agency and social services departments, Project Managers, Engineers",
 
-  heroTitle: "Translating brand-new policy into a Medi-Cal renewal people can finish",
-  heroSub: "New federal work rules, a tight deadline, and requirements that changed every other day. My job was to turn them into clear steps on BenefitsCal.",
+  heroTitle: "Translating brand-new policy into a Medicaid renewal people can finish",
+  heroSub: "New federal work rules, a tight deadline, and requirements that changed every other day. My job was to turn them into clear steps on the state's benefits portal.",
   overview: [
-    "BenefitsCal - California Eligibility Portal", "BenefitsCal is a portal where Californians can get and manage benefits online. This includes food assistance (CalFresh) formerly food stamps, cash aid (CalWORKs, General Assistance, Cash Assistance Program for Immigrants), and affordable health insurance (Medi-Cal). This includes program status, benefit amount, and other case details.",
-    "As a UX designer, I've spent most of my time on BenefitsCal enhancing the site: policy-driven updates, navigation, content clarity, and accessibility. I've led several enhancements end to end, including the Medi-Cal renewal, the CalFresh renewal, and the login experience. This case study focuses on the Medi-Cal renewal.",
+    "A statewide benefits eligibility portal", "My client, a state agency, and its partner social services departments run a statewide portal where residents apply for and manage their benefits online. This includes food assistance (SNAP, formerly food stamps), cash aid, and affordable health coverage through Medicaid, the medical benefit established under Title XIX of the Social Security Act. Residents can also check program status, benefit amounts, and other case details.",
+    "As a UX designer, I've spent most of my time on the portal enhancing the site: policy-driven updates, navigation, content clarity, and accessibility. I've led several enhancements end to end, including the Medicaid renewal, the food assistance renewal, and the login experience. This case study focuses on the Medicaid renewal.",
   ],
      overviewBullets: [
-    "Easier to log into their BenefitsCal account",
+    "Easier to log into their account",
     "More comprehensible to apply for benefits",
     "Manage their account",
      ],
   problem: {
     title: "A policy no one had implemented before, on a deadline",
-    body: "The HR1 policy introduced new work and community engagement rules for Medi-Cal, along with a way to claim an exemption from them. It had never been done before and was high priority: falling behind would be costly for the state and, worse, could leave Californians who depend on Medi-Cal without coverage. BenefitsCal doesn't determine eligibility. It's the pathway people use to apply and renew, so everything we showed had to follow a policy that was still being written.",
+    body: "The HR1 policy introduced new work and community engagement rules for Medicaid, along with a way to claim an exemption from them. It had never been done before and was high priority: falling behind would be costly for the state and, worse, could leave residents who depend on Medicaid without coverage. The portal doesn't determine eligibility. It's the pathway people use to apply and renew, so everything we showed had to follow a policy that was still being written.",
     hmw: "How might we turn new, still-changing policy requirements into a renewal experience people can complete online, without having to go to a county office?",
     bullets: [
       "Requirements and form language changed often, sometimes every other day",
@@ -42,14 +42,14 @@ export const benefitsCal: CaseStudy = {
     body: "Most of the challenge wasn't any single screen. It was keeping the design in step with constant changes while making sure the online path stayed easier than going in person.",
     steps: [
       { title: "Field research at county offices", description: "Visited county offices to see why people renew in person when they could do it online, and where the online experience left gaps we could close." },
-      { title: "Reuse what works", description: "Adapted the CalFresh work-rules screens (ABAWD) for the Medi-Cal exemption questions. Same structure for a cohesive experience, with options and wording rewritten for Medi-Cal's rules. With the time crunch, there was no reason to rebuild something that already worked." },
+      { title: "Reuse what works", description: "Adapted the food assistance (SNAP) work-rules screens (ABAWD) for the Medicaid exemption questions. Same structure for a cohesive experience, with options and wording rewritten for Medicaid's rules. With the time crunch, there was no reason to rebuild something that already worked." },
       { title: "Never answer twice", description: "The old form asked people early on to confirm their information hadn't changed, then made them re-enter it anyway. We replaced that with a background check so it happens automatically instead of being another yes/no question." },
       { title: "Keep 50+ stakeholders aligned", description: "Presented designs to groups of 50+ people, including my team, the client, and external stakeholders. Worked through gaps between the old and new form language as requirements shifted." },
     ],
   },
   finalDesign: {
-    title: "The Medi-Cal renewal flow",
-    body: "Updated and new screens covering the HR1 exemption questions and work and community engagement reporting, built on familiar BenefitsCal patterns and written in plain language.",
+    title: "The Medicaid renewal flow",
+    body: "Updated and new screens covering the HR1 exemption questions and work and community engagement reporting, built on the portal's familiar patterns and written in plain language.",
     images: [],
   },
   reflection: {
